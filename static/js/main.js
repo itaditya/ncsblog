@@ -5,6 +5,12 @@ console.log(screen.width);
 var date = new Date();
 console.log(date.getUTCDay())
 document.addEventListener("keydown",print);
+
+localStorage.setItem('myCat', 'Tom');
+localStorage.setItem('myName', 'Aditya');
+
+console.log(JSON.stringify(localStorage));
+
 function print(e) {
 	if (e.ctrlKey){
 		console.log("ctrl");
@@ -137,6 +143,51 @@ function showRecentPosts() {
 	});
 }
 
+// Local storage
+
+function storageAvailable(type) {
+	try {
+		var storage = window[type],
+			x = '__storage_test__';
+		storage.setItem(x, x);
+		storage.removeItem(x);
+		return true;
+	}
+	catch(e) {
+		return false;
+	}
+}
+
+if (storageAvailable('localStorage')) {
+	// Yippee! We can use localStorage awesomeness
+}
+else {
+	// Too bad, no localStorage for us
+} 
+//--------------
+// AJAX --------------------------
+
+function loadJSON(callback) {   
+
+    var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'my_data.json', true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+            callback(xobj.responseText);
+          }
+    };
+    xobj.send(null);  
+ }
+
+function init() {
+ loadJSON(function(response) {
+  // Parse JSON string into object
+    var actual_JSON = JSON.parse(response);
+ });
+}
+//--------------------------------
 //----------------------------------------------------------------------------
 
 /* Future --
