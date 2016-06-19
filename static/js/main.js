@@ -5,12 +5,6 @@ console.log(screen.width);
 var date = new Date();
 console.log(date.getUTCDay())
 document.addEventListener("keydown",print);
-
-localStorage.setItem('myCat', 'Tom');
-localStorage.setItem('myName', 'Aditya');
-
-console.log(JSON.stringify(localStorage));
-
 function print(e) {
 	if (e.ctrlKey){
 		console.log("ctrl");
@@ -64,14 +58,23 @@ function sidebar(e) {
  * the modal display state is toggled then with animation.
 */
 
+/* Improvement to be done
+ * for every btn having data-toggle=modal/tooltip/etc. we have to trigger that 
+   through its data-toggle-id i.e. generalise it.
+*/
 var comBtn = document.getElementById('comBtn');
 comBtn.addEventListener('click' , toggleCommentModal);
 
 var closeBtn = document.getElementsByClassName('closeModal')[0];
 
 function toggleCommentModal() {
+	toggler(comBtn);
+	closeBtn.addEventListener('click' , toggleCommentModal);
+}
 
-	var comModal = comBtn.dataset.toggle;
+function toggler(elem) {
+
+	var comModal = elem.dataset.toggleId;
 	comModal = document.getElementById(comModal);
 
 	if (comModal.style.display == 'block') {
@@ -82,8 +85,6 @@ function toggleCommentModal() {
 		comModal.classList.add('animated');
 		comModal.classList.add('fadeIn');
 	}
-
-	closeBtn.addEventListener('click' , toggleCommentModal);
 }
 
 // ---------------------------------
@@ -117,7 +118,7 @@ function offsetTop(elem) {
 
 // ----------------------------------------------------
 
-// Functions for dynamic content loading based on scrolling .
+// Functions for generating notification based on scrolling .
  
 page.addEventListener('scroll' , showNotifications);
 
@@ -125,9 +126,16 @@ function showNotifications() {
 
 	var elem = document.getElementsByClassName('footer')[0];
 
-	scrollCall(offsetTop(elem),function() {
+	//-500 is done to trigger before footer is completely viewed
+
+	scrollCall((offsetTop(elem)-500),function() {
 		page.removeEventListener('scroll' , showNotifications);
 		console.log('notification');
+		var content = {
+       		body: 'you can use CSS to darken images',
+       		icon: '../assets/dp2.jpg'
+     	}
+		notifyMe('Did You Know',content);
 	});
 }
 
@@ -143,58 +151,88 @@ function showRecentPosts() {
 	});
 }
 
-// Local storage
+// local storage
 
-function storageAvailable(type) {
-	try {
-		var storage = window[type],
-			x = '__storage_test__';
-		storage.setItem(x, x);
-		storage.removeItem(x);
-		return true;
+var userName = document.getElementById('user-name');
+var userDomain = document.getElementById('user-domain');
+
+var userSave = document.getElementById('user-save');
+userSave.addEventListener('click' , saveDetails);
+
+function saveDetails() {
+
+	// localStorage.setItem('name','aditya');
+	// console.log(localStorage.name);
+
+	var userDetails = {
+		name : userName.value ,
+		domain : userDomain.value
 	}
-	catch(e) {
-		return false;
+	localStorage.setItem('details',JSON.stringify(userDetails));
+	console.log(JSON.parse(localStorage.details));
+}
+
+// document.addEventListener('hover',greetuser);
+
+function greetuser() {
+	var username = null;
+	if (localStorage.length > 0) {
+		username = JSON.parse(localStorage.details).name;	
+	};
+	if(username != null) {
+		console.log('Hello ',username);
 	}
 }
+// ------------------------------------
+// Notification Api
 
-if (storageAvailable('localStorage')) {
-	// Yippee! We can use localStorage awesomeness
+function notifyMe(heading,content) {
+  // Let's check if the browser supports notifications
+
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") 
+  {
+
+    // If it's okay let's create a notification
+    // var notification = new Notification('Did You Know',
+    // {
+    //   body: 'you can use CSS to darken images',
+    //   icon: '../assets/dp2.jpg' // optional
+    // });
+
+    var notification = new Notification(heading,content);
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== 'denied') {
+
+      Notification.requestPermission(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        var notification = new Notification('Hi there!',
+        {
+        	body: 'Thank you for granting permission\nHere you can read new facts'
+        });
+      }
+    });
+  }
+
+  // At last, if the user has denied notifications, and you 
+  // want to be respectful there is no need to bother them any more.
 }
-else {
-	// Too bad, no localStorage for us
-} 
-//--------------
-// AJAX --------------------------
 
-function loadJSON(callback) {   
-
-    var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'my_data.json', true); // Replace 'my_data' with the path to your file
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);  
- }
-
-function init() {
- loadJSON(function(response) {
-  // Parse JSON string into object
-    var actual_JSON = JSON.parse(response);
- });
-}
-//--------------------------------
+// ----------------
 //----------------------------------------------------------------------------
 
 /* Future --
 
 * -Use google prety code
 * -Use codepen embeds --done
-* -Use local storage to save user name and description like front/back/design..
+* -Use local storage to save user name and description like front/back/design.. --done
 * -Use notification to display a did you know when scrolled just beore footer. --done   
 * -Use scroll event to send ajax request for new recent posts .
 */
@@ -213,4 +251,6 @@ var contbig = document.getElementsByClassName('main')[0];
      causing overflowing of content rather than increasing height .
      -- maybe the problem is with codepen only (yippee!)
      --- fixed :) by oveflow scroll on codepen (!strange)
+* 4) js anim to respond to btn clicks .
+* 5) sidebar problem with firefox .
 */

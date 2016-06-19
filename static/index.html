@@ -4,10 +4,8 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>Project</title>
 	<link rel="stylesheet" type="text/css" href="css/lightanim.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	
 </head>
-<body>
+<body onload="greetuser();">
 	<div class="page animated fadeIn">
 		<header class="navbar" role="banner">
 			<a href="#" class="brand-name">NCS BLOG</a>
@@ -97,17 +95,23 @@
 				</div>
 				<div class="border widget-sm" role="comments">
 					<p data-num="89"> comments</p>
-					<div class="btn" data-toggle="commentModal" id="comBtn" >View Comments
+					<div class="btn" data-toggle-id="commentModal" id="comBtn" >View Comments
 					</div>
 				</div>
 				<div class="border widget-sm">
 					<p>Quiz of Today</p>
 					<div class="btn">View Quiz</div>
 				</div>
-
+				<div class="border widget-sm" id="user-widget">
+					<p>Hey tell us more about you !</p>
+					<input type="text" id="user-name" placeholder="Name">
+					<input type="text" id="user-domain" placeholder="Domain">
+					<div class="btn" id="user-save">Save Details</div>
+				</div>
 			</aside>
 		</section>
 		<!-- .main blog container ends -->
+		<!-- <p class="posts-text">Read these latest articles<br></p> -->
 		<section class="posts-card">
 			<div class="card-details border">
 				<div class="img-container">
@@ -130,7 +134,7 @@
 						</div>
 					</div>
 				</div>
-				<p>Making a text shadow efect in photoshop</p>
+				<p>Making a text shadow effect in photoshop</p>
 			</div>
 			<div class="card-details border">
 				<div class="img-container">

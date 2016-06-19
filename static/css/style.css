@@ -8,7 +8,6 @@ body {
 	letter-spacing: 2px;
 	word-spacing: 3px;
 	background: #fafafa;
-
 }
 
 /*Layout*/
@@ -19,6 +18,9 @@ body {
 a {
 	color: #fff;
 	text-decoration: none;
+}
+li {
+	list-style: none !important;
 }
 .page {
 	height: 100vh;
@@ -54,14 +56,10 @@ a {
 	the sidebar will be pos-rel , when the scroll 
 	position is greater than hero height , sidebar will be pos-fixed
 */
-	min-height: 800px;
-	/*height: 100vh;*/
-	/*background: #000;*/
 	width: 25%;
-	/*bottom: 70px;*/
 	top: 0px;
+	height: 100vh;
 	overflow: auto;
-	/*margin-bottom: -10px;*/
 }
 .main {
 	min-height: 2000px;
@@ -126,8 +124,23 @@ a {
 	background: transparent;
 	transition:.5s;	
 }
+.posts-card:before {
+	content: "Read these latest articles";
+	position: absolute;
+	top: -100px;
+	font-size: 24px;
+	font-weight: normal;
+	left: 20px;
+	padding: 15px 60px;
+	padding-left: 0;
+	border-bottom: 2px solid;
+	/*color: rgba(229,126,49,1);*/ 
+	color: #053140;
+	letter-spacing: 0;
+}
 .posts-card {
-	margin: 20px 0;
+	position: relative;
+	margin: 140px 0;
 	height: 400px;
 	background: #fff;
 	width: 75%;
@@ -271,10 +284,6 @@ a {
 .breadcrumb>li {
 	display: inline;
 }
-li {
-	/*text-align: left;*/
-	list-style-type: none;
-}
 .widget p {
 	color: #000;
 	text-align: center;
@@ -336,6 +345,25 @@ li {
 	/*background: rgba(0,182,72,1);*/
 	background: #09B1CF;
 	color: #fff;
+}
+#user-widget {
+	min-height: 320px;
+	padding: 20px 10px;
+}
+#user-widget>input {
+	padding: 10px 0;
+	padding-left: 10px;
+	font-size: 20px; 
+	margin-bottom: 25px;
+	border: none;
+	/*color: #09B1CF;*/
+	border-bottom: 2px solid #09B1CF;
+}
+#user-save {
+	width: 200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    font-size: 18px;
 }
 div[role="comments"]>p:before {
 	content: attr(data-num);
@@ -437,6 +465,7 @@ div[role="comments"]>p:before {
 	flex-direction: column;
 	/*align-items: center;
 	justify-content:center;*/
+	overflow-y: hidden;
 	width: 100%;
 	/*margin-bottom: -10px;*/
 }
@@ -567,6 +596,7 @@ div[role="comments"]>p:before {
 	padding: 0;
     transition: .8s;
     text-align: center;
+    list-style: none;
 }
 .post:hover {
 	background: rgba(0,0,0,0.6);
