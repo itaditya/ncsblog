@@ -1,0 +1,149 @@
+<!Doctype html>
+<html  ng-app="blogApp" lang="en"  ng-controller="blogControllers">
+<head>
+	<meta charset="utf-8">
+	<title> Page {{pageno}}</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/lightanim.css">
+	<script src="bower_components/angular/angular.js"></script>	
+	<script src="bower_components/angular-route/angular-route.js"></script>	
+
+<!--	<script src="js/angular.js"></script> -->
+</head>
+<body>
+	<div class="page animated fadeIn" ng-controller="contentControllers">
+		<nav-bar info="nav" class="navbar" role="banner"></nav-bar>
+		<!-- navbar ends -->
+		<!-- <blog-banner info="blog1"></blog-banner> -->
+		<hero-banner info="ankit" class="hero-banner"></hero-banner>
+		<!-- Hero Poster Ends -->
+		<section class="container" role="blog content">
+			<main class="main z-depth border">
+				<ul class="breadcrumb">
+					<li data-ng-repeat="crumbs in breads"> {{ crumbs }} </li>
+				</ul>
+				<ul class="blog-paragraphs">
+
+					<li role="intro">
+						<h2 class="heading">
+							Example: Horizontal And Vertical Centering (Or The Holy Grail Of Web Design) 
+						</h2>
+						<p class="info-text">
+							<span class="emphasise">Flexible box layout</span>
+
+							(or flexbox) is a new box model optimized for UI layout. As one of the first CSS modules designed for actual layout (floats were really meant mostly for things such as wrapping text around images), it makes a lot of tasks much easier, or even possible at all.
+
+							<a href="#" class="hyperlink txt-green">Flexbox's repertoire</a>
+
+							includes the simple centering of elements (both horizontally and vertically), the expansion and contraction of elements to fill available space, and source-code independent layout, among others abilities.
+						</p>
+						<div class="support-image">
+							<img src="assets/dp2.jpg" class="border z-depth-1">
+						</div>
+						<div class="quoted-text">
+							<p>
+								The usage of flexbox is very easy in the sense that you can finally align content vertically The usage of flexbox is very easy in the sense that you can finally align content vertically
+							</p>
+						</div>
+						<pre class="codebox bg-dk-purple">
+.quoted-text > p {
+	/*width: 80%;*/
+	margin: 0px;
+	text-align: center;
+	line-height: 40px;
+}
+						</pre>													
+						<div class="codepen">
+							<!-- <iframe id="result-iframe" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-modals allow-forms" src="http://codepen.io/chriscoyier/embed/gfdDu&amp;animations=run" allowtransparency="true" frameborder="0" scrolling="yes" allowfullscreen="true" name="CodePen Preview for Progress Steps" title="CodePen Preview for Progress Steps"></iframe>	 -->
+							<iframe height='265' scrolling='no' src='http://codepen.io/winkerVSbecks/embed/RWxXpE/?height=265&theme-id=0&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/winkerVSbecks/pen/RWxXpE/'>Monument Valley in Space for blog post</a> by Varun Vachhar (<a href='http://codepen.io/winkerVSbecks'>@winkerVSbecks</a>) on <a href='http://codepen.io'>CodePen</a>.</iframe>
+
+
+							<iframe scrolling='no' src='http://codepen.io/itaditya/embed/qZJQOb/?height=305&theme-id=0&default-tab=css,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' >See the Pen <a href='http://codepen.io/itaditya/pen/qZJQOb/'>inset box shadow</a> by Aditya (<a href='http://codepen.io/itaditya'>@itaditya</a>) on <a href='http://codepen.io'>CodePen</a>.</iframe>		
+
+							
+							<!-- I think for local view src has to be added with http but on server it will be running without it (phew !) -->	
+						</div>
+					</li>
+					<!-- First portion of blog completes -->
+
+				</ul>
+			</main>
+			<!-- End of Main -->
+			<!-- sidebar starts -->
+			<aside class="sidebar sm-hide">
+				<div class="widget border">
+					<p>Contents</p>
+					<ul class="index-list">
+						<li data-ng-repeat="topic in topics">{{topic}}</li>
+					</ul>
+				</div>
+				<div class="border widget-sm" role="comments">
+					<p data-num="89"> comments</p>
+					<div class="btn" data-toggle-id="commentModal" id="comBtn" >View Comments
+					</div>
+				</div>
+				<div class="border widget-sm">
+					<p>Quiz of Today</p>
+					<div class="btn">View Quiz</div>
+				</div>
+				<div class="border widget-sm" id="user-widget">
+					<p>Hey tell us more about you !</p>
+					<input type="text" id="user-name" placeholder="Name">
+					<input type="text" id="user-domain" placeholder="Domain">
+					<div class="btn" id="user-save">Save Details</div>
+				</div>
+			</aside>
+		</section>
+		<!-- .main blog container ends -->
+		<!-- <p class="posts-text">Read these latest articles<br></p> -->
+		<section class="posts-card">
+			<div class="card-details border" ng-repeat="post in posts | orderBy : 'date'">
+				<div class="img-container">
+					<img ng-src=" {{post.imgsrc}} ">
+					<div class="overlay">
+						<div class="caption">
+							<a ng-href="{{post.link}}">View</a>
+						</div>
+					</div>
+				</div>
+				<p>{{post.title}} ({{post.date | date}})</p>
+			</div>
+			<!-- <div class="card-details border">
+				<div class="img-container">
+					<img src="assets/l2.jpg">
+					<div class="overlay">
+						<div class="caption">
+							<a href="#">View</a>
+						</div>
+					</div>
+				</div>
+				<p></p>
+			</div> -->
+		</section>
+		<blog-footer info="footer" class="footer bg-dk-purple"></blog-footer>
+		<div class="modal" id="commentModal">
+			<span class="closeModal icon-cross"></span>
+		</div>
+	</div>
+	<!-- Page ends -->
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/main.js"></script> 
+
+	<!-- Modules -->
+	<script src="js/app.js"></script>
+
+	<!-- Controllers -->
+	<script src="js/controllers.js"></script>
+
+	<!-- Directives -->
+	<script src="js/directives.js"></script>
+
+
+	<!--
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
+	<script src="js/routes.js"></script>
+	
+	-->
+</body>
+</html>

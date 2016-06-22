@@ -1,0 +1,32 @@
+<div class="brand-details">
+	<a href="http://hackncs.com/"><h3>&copy;{{info.title}}</h3></a>
+	<div class="social-bar">
+		<span class=" icon-facebook"></span>
+		<span class=" icon-google-plus"></span>
+		<span class=" icon-github"></span>
+	</div>
+</div>
+<div class="subscribe">
+	<form action="">
+		<input type="email" placeholder="Never miss any updates ." autofocus>
+		<!-- Trick : use autofocus in input to scroll to that on reload -->
+		<div class="submit"><h3>Subscribe</h3></div>
+	</form>
+</div>
+<div class="posts-list txt-orange">
+	<!-- <h4 class="txt-orange"></h4> ng-repeat="category in categories" -->
+	<div class="post" >
+		<h5 class="txt-orange">{{info.categories[0].title}}</h5>
+		<div class="tag-box">
+			<p>
+				<span class="tags">
+					{{info.categories[0].tags[0]}}</span>
+				<span class="tags">css flexbox</span>
+				<span class="tags">css triangles</span>
+				<span class="tags">getting started</span>
+				<span class="tags">cross browser</span>
+				<span class="tags">animations</span>
+			</p>
+		</div>
+	</div>
+</div>
