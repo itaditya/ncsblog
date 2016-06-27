@@ -373,10 +373,10 @@ div[role="comments"]>p:before {
 	font-weight: 600;
 }
 .emphasise {
-	padding: 7px 4px;
-	font-size: 14px;
+	padding: 8px 12px;
+	font-size: 18px;
 	background: rgba(0,0,0,0.1);
-	border-radius: 2px;
+	border-radius: 3px;
 
 }
 .hyperlink:hover {

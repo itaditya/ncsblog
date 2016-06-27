@@ -1,86 +1,60 @@
-'use strict';
-
 /* Controllers */
 
-var blogControllers = angular.module('blogControllers', []);
 // var blogApp = angular.module('blogApp', ['blogControllers']);
 
-blogControllers.controller('blogControllers', ['$scope',
-  function($scope) {
-    $scope.pageno = 1 ;
-    $scope.nav = {
-        navbrand : 'NCS Blog'
-    };
+angular.module('blogControllers', ['blogApp'])
+    .controller('blogCtrls',
+      function blogCtrls( $scope , blogFactory ) {
+        'use strict';
 
-    // Related to blog authors 
-    $scope.aditya = {
-        image : 'assets/dp2.jpg', 
-        name : 'Aditya Agarwal',
-        title : 'Angular.js know how'
-    }
-    $scope.ankit = {
-        image : 'assets/dp1.png', 
-        name : 'Ankit Jain',
-        title : 'Getting Started in PHP'
-    }
-    // ----------------------------------------
-    // For footer ---
+        $scope.nav = {
+            navbrand : 'NCS BLOG'
+        };
+        $scope.posts = blogFactory.getPosts();
+        // $scope.$on('ngRepeatFinished',function(){
+        //   console.log('Hi');
+        // });
+        // ----------------------------------------
+        // For footer ---
 
-    // $scope.footer = {
-
-    // }
-    $scope.footer = {
-        title : 'NCS' ,
-        categories : [
-            {
-                title : 'backend' ,
-                tags : [
-                    'frontend' ,
-                    'design'
-                ]
-            },
-            {
-                title : 'frontend' 
-            }
-        ]
-    }
-    // -----------------
-}]);
-
-blogControllers.controller('contentControllers', ['$scope',
-  function($scope) {
-    $scope.topic = 'NCS';
-    $scope.breads = [
-        'web' ,
-        'frontend' ,
-        'flexbox'
-    ];
-    $scope.posts = [
-        {
-            date : '2016-06-21' ,
-            imgsrc : 'assets/l2.jpg' ,
-            link : 'https://abc.x' ,
-            title : 'How to add images and videos in html'
-        } ,
-        {
-            date : '2014-06-12' ,
-            imgsrc : 'assets/l2.jpg' ,
-            link : 'https://abc.y' ,
-            title : 'Making a text shadow effect in photoshop'
-        } ,
-        {
-            date : '2016-03-02' ,
-            imgsrc : 'assets/l2.jpg' ,
-            link : 'https://abc.z' ,
-            title : 'How to solve programs on codechef'
+        $scope.footer = {
+            title : 'Nibble Computer Society' ,
+            categories :  blogFactory.getCategories()
         }
-    ];
-    $scope.topics = [
-        'Introduction' ,
-        'Get Started' ,
-        'Prerequisites' , 
-        'Examples' , 
-        'Experiments' , 
-        'Conclusion'
-    ];
-}]);
+
+        $scope.breads = blogFactory.getBreads();
+
+        var loc = window.location.pathname;
+        var sloc = loc.substring(0,(loc.lastIndexOf('.')-4));
+        var path = "blogs"+sloc+".json";
+
+        blogFactory.getBlogData(path)
+          .success(function(jsonData, statusCode){
+              console.log('The request was successful!', statusCode);
+              $scope.pagename = jsonData.pagename ;
+              $scope.topics = jsonData.topics ;
+              $scope.author = jsonData.author ;
+
+              var parent = document.getElementsByClassName('main')[0];
+              parent.insertAdjacentHTML('beforeend',jsonData.content);
+          });
+    });
+
+    // .controller('blogControllers',
+    //   function( $scope , blogFactory) {
+    //     $scope.nav = {
+    //         navbrand : 'NCS BLOG'
+    //     };
+    //     $scope.posts = blogFactory.getPosts();
+    //     // $scope.$on('ngRepeatFinished',function(){
+    //     //   console.log('Hi');
+    //     // });
+    //     // ----------------------------------------
+    //     // For footer ---
+
+    //     $scope.footer = {
+    //         title : 'Nibble Computer Society' ,
+    //         categories :  blogFactory.getCategories()
+    //     }
+    //     // -----------------
+    // })

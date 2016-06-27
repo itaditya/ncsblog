@@ -1,30 +1,23 @@
-console.log('Im in');
-'use strict';
+// // console.log('Im in');
+// // 'use strict';
 
-/* App Module */
+// /* App Module */
 
-var blogApp = angular.module('blogApp', []);
-  // 'ngRoute',
-  // 'phonecatAnimations',
-
-  // 'phonecatControllers',
-  // 'phonecatFilters',
-  // 'phonecatServices'
-
-  // ------------------------
-
-// phonecatApp.config(['$routeProvider',
-//   function($routeProvider) {
-//     $routeProvider.
-//       when('/phones', {
-//         templateUrl: 'partials/phone-list.html',
-//         controller: 'PhoneListCtrl'
-//       }).
-//       when('/phones/:phoneId', {
-//         templateUrl: 'partials/phone-detail.html',
-//         controller: 'PhoneDetailCtrl'
-//       }).
-//       otherwise({
-//         redirectTo: '/phones'
+// angular.module('blogApp', ['ngRoute'])
+//   .config(function ( $routeProvider ) {
+//     'use strict';
+//     // configure urls
+//     $routeProvider
+//       // inbox route
+//       .when('/', {
+//         templateUrl: 'index.html',
+//         controller: 'blogControllers', // map js to html scope
+//       })
+//       .when('/blog5', {
+//         templateUrl: 'partials/blog5.html',
+//         controller: 'CChefCtrls', // map js to html scope
+//       })
+//       .otherwise({ 
+//         redirectTo: '/'
 //       });
-//   }]);
+//   });

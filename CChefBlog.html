@@ -1,8 +1,8 @@
 <!Doctype html>
-<html  ng-app="blogApp" lang="en" ng-controller="contentControllers">
+<html  ng-app="blogApp" lang="en" ng-controller="blogCtrls">
 <head>
 	<meta charset="utf-8">
-	<title> Page {{pageno}}</title>
+	<title> {{pagename}}</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/lightanim.css">
 	<script src="bower_components/angular/angular.js"></script>	
@@ -10,19 +10,19 @@
 
 <!--	<script src="js/angular.js"></script> -->
 </head>
-<body ng-controller="blogControllers">
+<body>
 	<div class="page animated fadeIn">
 		<nav-bar info="nav" class="navbar" role="banner"></nav-bar>
 		<!-- navbar ends -->
 		<!-- <blog-banner info="blog1"></blog-banner> -->
-		<hero-banner info="aditya" class="hero-banner"></hero-banner>
+		<hero-banner info="author" class="hero-banner"></hero-banner>
 		<!-- Hero Poster Ends -->
 		<section class="container" role="blog content">
 			<main class="main z-depth border">
 				<ul class="breadcrumb">
 					<li data-ng-repeat="crumbs in breads"> {{ crumbs }} </li>
 				</ul>
-				<!--  blogParagraphs -->
+				<!-- {{ blogParagraphs }} -->
 			</main>
 			<!-- End of Main -->
 			<!-- sidebar starts -->
@@ -33,21 +33,7 @@
 						<li data-ng-repeat="topic in topics">{{topic}}</li>
 					</ul>
 				</div>
-				<div class="border widget-sm" role="comments">
-					<p data-num="89"> comments</p>
-					<div class="btn" data-toggle-id="commentModal" id="comBtn" >View Comments
-					</div>
-				</div>
-				<div class="border widget-sm">
-					<p>Quiz of Today</p>
-					<div class="btn">View Quiz</div>
-				</div>
-				<div class="border widget-sm" id="user-widget">
-					<p>Hey tell us more about you !</p>
-					<input type="text" id="user-name" placeholder="Name">
-					<input type="text" id="user-domain" placeholder="Domain">
-					<div class="btn" id="user-save">Save Details</div>
-				</div>
+				<side-bar info="sidebar"></side-bar>
 			</aside>
 		</section>
 		<!-- .main blog container ends -->
@@ -72,6 +58,8 @@
 	</div>
 	<!-- Page ends -->
 
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/main.js"></script> 
 
 	<!-- Modules -->
 	<script src="js/app.js"></script>
@@ -82,12 +70,10 @@
 	<!-- Directives -->
 	<script src="js/directives.js"></script>
 
+
 	<!-- Factories -->
 
 	<script src="js/factories.js"></script>
-	
-	<!-- Scripts -->
-	<script type="text/javascript" src="js/main.js"></script> 
 
 	<!--
 	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>

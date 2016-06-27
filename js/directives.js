@@ -13,6 +13,16 @@ blogDir.directive("navBar" , function() {
   }; 
 });
 
+blogDir.directive("sideBar" , function() { 
+  return { 
+    restrict: 'E', 
+    scope: { 
+      info: '=' 
+    },
+   templateUrl:'partials/sidebar.html'
+  }; 
+});
+
 blogDir.directive("heroBanner" , function() { 
   return { 
     restrict: 'E', 
@@ -32,3 +42,16 @@ blogDir.directive("blogFooter" , function() {
    templateUrl:'partials/footer2.html'
   }; 
 });
+
+// blogDir.directive('onFinishRenderFilters',function($timeout){
+//   return {
+//     restrict: 'A',
+//     link: function (scope,element,attr){
+//       if(scope.$last === true ) {
+//         $timeout(function() {
+//           scope.$emit('ngRepeatFinished');
+//         });
+//       }
+//     }
+//   }
+// })

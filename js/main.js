@@ -1,3 +1,4 @@
+// console.log(JSON.stringify(document.getElementsByClassName('blog-paragraphs')[0].outerHTML));
 var wid1 = document.getElementsByClassName('widget')[0];
 // window.title = "Aditya";
 // console.log(wid1.innerHTML);
@@ -8,7 +9,14 @@ document.addEventListener("keydown",print);
 function print(e) {
 	if (e.ctrlKey){
 		console.log("ctrl");
-		// preventDefault();
+		var loc = document.location.pathname;
+		var sloc = loc.substring(0,(loc.lastIndexOf('.')-4));
+		var path = "blogs"+sloc+".json";
+		console.log(path);
+		// var sloc = loc.toString(loc);
+		// console.log(sloc.split());
+
+		e.preventDefault();
 	}
 }
 
@@ -253,4 +261,5 @@ var contbig = document.getElementsByClassName('main')[0];
      --- fixed :) by oveflow scroll on codepen (!strange)
 * 4) js anim to respond to btn clicks .
 * 5) sidebar problem with firefox .
+* 6) JS is loading before Angular can render the page .
 */
