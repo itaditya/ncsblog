@@ -1,0 +1,78 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family:'Helvetica' ,sans serif;
+    font-weight: 600 ;
+    color: ;
+    background: #009688;
+    letter-spacing: 2px;
+}
+*,*:hover,*:focus {
+	box-sizing:border-box;
+	outline: 0px !important;
+}
+.container {
+	text-align: center;
+}
+.carousel-outer {
+	margin: 30px auto;
+	text-align: center;
+	position: relative;
+	width: 600px;
+}
+[class^="carousel-"] {
+}
+.carousel-btn {
+	border: 30px solid transparent;
+	background: transparent;
+	position: absolute;
+	top: 50%;
+	margin-top: -15px;
+	padding: 0;
+	transition: .6s;
+}
+#cprev {
+	border-right: 50px solid #293541;
+	left: -70px;
+}
+#cnext {
+    border-left: 50px solid #293541;
+    right: -70px;
+}
+#cprev:hover{
+	border-right: 50px solid #34404c;
+	transform: rotateY(-30deg);
+}
+#cnext:hover {
+    border-left: 50px solid #34404c;
+	transform: rotateY(30deg);
+}
+#cload {
+	display: none;
+}
+.carousel-inner {
+	/*overflow-x: scroll;*/   
+	/*Use overflow scroll for better when know how to scroll horizontally by JS . */
+	overflow: hidden;
+	height: 350px;
+	width: 600px;
+	margin: 0 auto;
+}
+.carousel-images {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.carousel-inner li {
+	list-style-type: none;
+	display: inline;
+	float: left;
+	height: 100%;
+	box-shadow: inset 0px -23px 45px 20px rgba(0,0,0,0.5);
+	background: #fff;
+	background-size: cover !important;
+	background-position: center !important;
+}
+.carousel-inner::-webkit-scrollbar {
+	display: none;
+}

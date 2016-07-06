@@ -10,7 +10,15 @@ angular.module('blogControllers', ['blogApp'])
         $scope.nav = {
             navbrand : 'NCS BLOG'
         };
-        $scope.posts = blogFactory.getPosts();
+
+        $scope.postsLoaded = false ;
+        
+        blogFactory.getPosts().success(
+            function(jsonData, statusCode){
+              console.log('The request was successful!', statusCode);
+              $scope.posts = jsonData.posts;
+              $scope.postsLoaded = true ;
+          });
         // $scope.$on('ngRepeatFinished',function(){
         //   console.log('Hi');
         // });
@@ -25,7 +33,7 @@ angular.module('blogControllers', ['blogApp'])
         $scope.breads = blogFactory.getBreads();
 
         var loc = window.location.pathname;
-        var sloc = loc.substring(0,(loc.lastIndexOf('.')-4));
+        var sloc = loc.substring(loc.lastIndexOf('/'),(loc.lastIndexOf('.')-4));
         var path = "blogs"+sloc+".json";
 
         blogFactory.getBlogData(path)
@@ -38,6 +46,10 @@ angular.module('blogControllers', ['blogApp'])
               var parent = document.getElementsByClassName('main')[0];
               parent.insertAdjacentHTML('beforeend',jsonData.content);
           });
+          
+        angular.element(document).ready(function () {
+            blogFactory.runJs();
+        });
     });
 
     // .controller('blogControllers',

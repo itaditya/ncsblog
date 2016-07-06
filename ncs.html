@@ -1,0 +1,172 @@
+<!Doctype html>
+<html  ng-app="blogApp" lang="en">
+<head>
+	<meta charset="utf-8">
+	<title> {{pagename}}</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/lightanim.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/Acarousel/carousel.css">
+	<link rel="stylesheet" type="text/css" href="css/ncsStyle.css">
+
+	<script src="bower_components/angular/angular.js"></script>	
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+</head>
+<body>
+	<div class="page animated fadeIn">
+		<nav-bar info="nav" class="navbar" role="banner"></nav-bar>
+		<!-- navbar ends -->
+		<!-- <blog-banner info="blog1"></blog-banner> --> 
+		<hero-banner info="author" class="hero-banner"></hero-banner>
+		<!-- Hero Poster Ends -->
+		<section class="container" role="blog-content">
+<!-- 			<div class="" id="">
+				<ul class="">
+					<li class="step1">
+						<div class="blog-card">
+							<div class="blog-img" data-tag="JS">
+							</div>
+							<div class="blog-details">
+							    <p>How to make a flexbox layout</p>
+							    <div class="blogger">
+							    	<span>Aditya Agarwal</span> 
+							    	<i class="fa fa-quote-left"></i>
+							    	<div class="blogger-views">993</div>
+							    </div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div> -->
+
+			<br>
+
+			<div class="carousel-outer" data-loadtype="simple">
+				<div class="carousel-inner">
+					<ul class="carousel-images">
+						<li>
+							<div class="blog-card">
+								<div class="blog-img" data-tag="JS">
+								</div>
+								<div class="blog-details">
+								    <p>How to make a flexbox layout</p>
+								    <div class="blogger">
+								    	<span>Aditya Agarwal</span> 
+								    	<i class="fa fa-quote-left"></i>
+								    	<div class="blogger-views">993</div>
+								    </div>
+								</div>
+							</div>
+
+							<div class="blog-card">
+								<div class="blog-img" data-tag="JS">
+								</div>
+								<div class="blog-details">
+								    <p>How to make a layout</p>
+								    <div class="blogger">
+								    	<span>Ankit Jain</span> 
+								    	<i class="fa fa-quote-left"></i>
+								    	<div class="blogger-views">993</div>
+								    </div>
+								</div>
+							</div>
+
+							<div class="blog-card">
+								<div class="blog-img" data-tag="JS">
+								</div>
+								<div class="blog-details">
+								    <p>How to make a flexbox layout</p>
+								    <div class="blogger">
+								    	<span>Aditya Agarwal</span> 
+								    	<i class="fa fa-quote-left"></i>
+								    	<div class="blogger-views">993</div>
+								    </div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="blog-card">
+								<div class="blog-img" data-tag="JS">
+								</div>
+								<div class="blog-details">
+								    <p>How to make a layout</p>
+								    <div class="blogger">
+								    	<span>Ankit Jain</span> 
+								    	<i class="fa fa-quote-left"></i>
+								    	<div class="blogger-views">993</div>
+								    </div>
+								</div>
+							</div>
+							<div class="blog-card">
+								<div class="blog-img" data-tag="JS">
+								</div>
+								<div class="blog-details">
+								    <p>How to make a layout</p>
+								    <div class="blogger">
+								    	<span>Ankit Jain</span> 
+								    	<i class="fa fa-quote-left"></i>
+								    	<div class="blogger-views">993</div>
+								    </div>
+								</div>
+							</div>
+							<div class="blog-card">
+								<div class="blog-img" data-tag="JS">
+								</div>
+								<div class="blog-details">
+								    <p>How to make a flexbox layout</p>
+								    <div class="blogger">
+								    	<span>Aditya Agarwal</span> 
+								    	<i class="fa fa-quote-left"></i>
+								    	<div class="blogger-views">993</div>
+								    </div>
+								</div>
+							</div>
+						</li>
+<!-- 					<li></li>
+						<li></li>	
+						<li></li>	
+						<li></li>	 -->	
+					</ul>
+				</div>
+				<button class="carousel-btn" id="cprev"></button>
+				<button class="carousel-btn" id="cnext"></button>
+				<button class="" id="cload">Load</button>
+			</div>
+
+		</section>
+		<!-- .main blog container ends -->
+		<blog-footer info="footer" class="footer bg-dk-purple"></blog-footer>
+		<div class="modal" id="commentModal">
+			<span class="closeModal icon-cross"></span>
+		</div>
+	</div>
+	<!-- Page ends -->
+
+	<!-- Scripts 
+	<script>
+	 var elem = document.getElementById('sequence1');
+	 var mySequence1 = sequence(elem);
+	</script>
+-->
+	<script type="text/javascript" src="bower_components/Acarousel/carousel.js"></script>
+	<!-- Modules -->
+	<script src="js/app.js"></script>
+
+	<!-- Controllers -->
+	<script src="js/controllers.js"></script>
+
+	<!-- Directives -->
+	<script src="js/directives.js"></script>
+
+
+	<!-- Factories -->
+
+	<script src="js/factories.js"></script>
+
+	<!--
+	<script type="text/javascript" src="js/main.js"></script> 
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
+	<script src="js/routes.js"></script>
+	
+	-->
+</body>
+</html>
