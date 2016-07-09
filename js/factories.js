@@ -14,7 +14,6 @@ angular.module('blogApp')
         'use strict';
 
         // Content Controllers
-
         var breads = [
             'web > ' ,
             'frontend > ' ,
@@ -47,28 +46,28 @@ angular.module('blogApp')
 
         var categories = [
                 {
-                    title : 'backend' ,
+                    title : 'Backend' ,
                     tags : [
                         'frontend' ,
                         'design'
                     ]
                 },
                 {
-                    title : 'frontend' ,
+                    title : 'Frontend' ,
                     tags : [
                         'frontend' ,
                         'design'
                     ]
                 },
                 {
-                    title : 'programming' ,
+                    title : 'Programming' ,
                     tags : [
                         'frontend' ,
                         'design'
                     ]
                 },
                 {
-                    title : 'designers' ,
+                    title : 'Designers' ,
                     tags : [
                         'frontend' ,
                         'design'
@@ -97,13 +96,64 @@ angular.module('blogApp')
                 console.log('There was an error!', data);
               })
         };
+        factory.runEditorJs = function() {
+            console.log('Lets Make a Blog');
+
+
+            var topicList = [
+            ]
+            var topicListSrc = document.querySelectorAll('.index-list li');
+
+
+            for (var i = 0; i < topicListSrc.length; i++) {
+                topicListSrc[i].setAttribute('contenteditable','true');
+            };
+            document.querySelector('.topic h2').setAttribute('contenteditable','true');
+
+
+            function DataToObject() {
+                for (var i = 0; i < topicListSrc.length; i++) {
+                    topicList[i] = topicListSrc[i].innerHTML;
+                };
+
+                var postContent = {
+                    pagename : document.querySelector('.topic h2').innerHTML,
+                    author : {
+                        image : document.querySelector('.topic img').getAttribute('src') ,
+                        name : document.querySelector('.topic p strong').innerHTML ,
+                        title : document.querySelector('.topic h2').innerHTML
+                    } ,
+                    uniqueTag :  document.querySelector('#uniqueTag').value,
+                    topics : topicList ,
+                    content : editAreaLoader.getValue('textarea_1') 
+                }
+                return postContent ;
+            }
+
+            //The Download blog In Json Mechanism
+            var postBlogBtn = document.querySelector('#postBlogBtn');
+            postBlogBtn.addEventListener('click',function(e) {
+
+                var postContent = DataToObject();
+                var postContentInJson = JSON.stringify(postContent);
+                console.log(postContentInJson);
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(postContentInJson);
+
+                var dlAnchorElem = document.getElementById('downloadAnchorElem');
+                dlAnchorElem.setAttribute("href",dataStr);
+                var FileName = document.querySelector('#uniqueTag').value + '.json' ;
+                dlAnchorElem.setAttribute("download", FileName);
+                dlAnchorElem.style.color = "#000";
+                dlAnchorElem.click();
+            })
+        };
         factory.runJs = function() {
 
             var wid1 = document.getElementsByClassName('widget')[0];
             console.log(screen.width);
 
             var page = document.getElementsByClassName('page')[0];
-            page.addEventListener('scroll',sidebar);
+            page.addEventListener('scroll',sidebarFix);
 
             // keep page variable and event listener together
             // page.scrollBy('130');
@@ -113,7 +163,7 @@ angular.module('blogApp')
             var herobanner = document.getElementsByClassName('hero-banner')[0];
             var heroheight = herobanner.clientHeight;
 
-            function sidebar(e) {
+            function sidebarFix(e) {
                 var scrolled = page.scrollTop;
                 if(scrolled >= heroheight) {
                     sidebar.style.position = 'fixed';

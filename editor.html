@@ -6,6 +6,39 @@
 	<link rel="stylesheet" type="text/css" href="css/lightanim.css">
 <!--	<script src="bower_components/angular/angular.js"></script>	-->
 	<script src="js/angular.js"></script>
+	<script type="text/javascript" src="bower_components/editarea_0_8_2/edit_area/edit_area_full.js"></script>
+
+	<script type="text/javascript">
+		editAreaLoader.init({
+			id : "textarea_1"		// textarea id
+			,font_size : 12
+			,word_wrap : true
+			,allow_toggle : false
+			,min_width : 800
+			,syntax: "html"			// syntax to be uses for highgliting
+			,start_highlight: true		// to display with highlight mode on start-up
+		});
+		console.log(JSON.stringify(document.querySelector('#a').outerHTML))
+	</script>
+	<style>
+		#editor {
+			border: solid #ddd 1px;
+		}
+		.area_toolbar {
+			background: #f7f7f7 !important;
+		}
+		.area_toolbar img {
+			width: 30px;
+			height: 30px;
+		}
+		#line_number {
+			border-right: solid #ddd 1px;
+		}
+		#result {
+			border-top: solid #ddd 1px;
+			border-bottom: solid #888 1px; 
+		}
+	</style>
 </head>
 <body onload="greetuser();" ng-controller="blogControllers">
 	<div class="page animated fadeIn">
@@ -27,10 +60,14 @@
 					<li>flexbox</li>
 				</ul>
 				<ul class="blog-paragraphs">
-					<li role="editor" class="editor" contenteditable>
+					<li role="editor" class="editor">
 						<h2 class="heading">
 							What is Flexbox ?
 						</h2>
+						<form method="post" id="a">
+							<textarea id="textarea_1" name="content" cols="80" rows="30">
+						</textarea>
+						</form>
 						<p>
 							<span class="emphasise">Flexible box layout</span>
 

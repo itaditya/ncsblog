@@ -5,7 +5,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 	// console.log(wid1.innerHTML);
 	console.log(screen.width);
 	var date = new Date();
-	console.log(date.getUTCDay())
+	console.log(date.getUTCDay());
 	document.addEventListener("keydown",print);
 	function print(e) {
 		if (e.ctrlKey){
@@ -16,19 +16,19 @@ angular.module('blogApp').angular.element(document).ready(function() {
 			// e.preventDefault();
 		}
 	}
-
 	// Closure
+
 	function outer(x) {
 		return function(y) {
-			console.log(x+y)
-		}
+			console.log(x+y);
+		};
 	}
 	func = outer(10);
 	func(20);
 
 	// Closure End
 	var page = document.getElementsByClassName('page')[0];
-	page.addEventListener('scroll',sidebar);
+	page.addEventListener('scroll',sidebarFix);
 
 	// keep page variable and event listener together
 	// page.scrollBy('130');
@@ -45,7 +45,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 	// var postsheight = postscard.clientHeight;
 
 
-	function sidebar(e) {
+	function sidebarFix(e) {
 		var scrolled = page.scrollTop;
 		if(scrolled >= heroheight) {
 			sidebar.style.position = 'fixed';
@@ -114,7 +114,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 		var offset = 0 ;
 		var siblings = elem.previousElementSibling;
 
-		while(siblings != null) {
+		while(siblings !== null) {
 			offset += siblings.clientHeight;
 			siblings = siblings.previousElementSibling;
 		}
@@ -139,7 +139,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 			var content = {
 	       		body: 'you can use CSS to darken images',
 	       		icon: '../assets/dp2.jpg'
-	     	}
+	     	};
 			notifyMe('Did You Know',content);
 		});
 	}
@@ -172,7 +172,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 		var userDetails = {
 			name : userName.value ,
 			domain : userDomain.value
-		}
+		};
 		localStorage.setItem('details',JSON.stringify(userDetails));
 		console.log(JSON.parse(localStorage.details));
 	}
@@ -183,8 +183,8 @@ angular.module('blogApp').angular.element(document).ready(function() {
 		var username = null;
 		if (localStorage.length > 0) {
 			username = JSON.parse(localStorage.details).name;	
-		};
-		if(username != null) {
+		}
+		if(username !== null) {
 			console.log('Hello ',username);
 		}
 	}

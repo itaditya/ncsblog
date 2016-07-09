@@ -3,6 +3,7 @@
 	"author" : {
 		        "image":"assets/dp2.jpg","name":"Ankit Jain","title":"Submitting Problems on CodeChef"
 		       } ,
+	"uniqueTag" : "CChef" ,
 	"topics" : [
 	            "Introduction","Get Started",
 	            "Prerequisites","Examples",

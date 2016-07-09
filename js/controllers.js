@@ -43,6 +43,10 @@ angular.module('blogControllers', ['blogApp'])
               $scope.topics = jsonData.topics ;
               $scope.author = jsonData.author ;
 
+              if (sloc != '/edit') {
+                document.querySelectorAll('.breadcrumb li')[2].innerHTML = jsonData.uniqueTag.toUpperCase();
+              }
+
               var parent = document.getElementsByClassName('main')[0];
               parent.insertAdjacentHTML('beforeend',jsonData.content);
           });
@@ -50,6 +54,22 @@ angular.module('blogControllers', ['blogApp'])
         angular.element(document).ready(function () {
             blogFactory.runJs();
         });
+
+        if(sloc == '/edit'){
+          angular.element(document).ready(function () {
+              blogFactory.runEditorJs();
+          });
+          $scope.clubs = [
+            'web' , 
+            'programming' ,
+            'technical' ,
+            'design'
+          ];
+          $scope.clubInner = [
+            'a' , 
+            'b'
+          ];
+        }
     });
 
     // .controller('blogControllers',

@@ -1,0 +1,141 @@
+<!Doctype html>
+<html  ng-cloak ng-app="blogApp" lang="en" ng-controller="blogCtrls">
+<head>
+	<meta charset="utf-8">
+	<title> {{pagename}}</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/lightanim.css">
+	<script src="bower_components/angular/angular.js"></script>	
+	<script src="bower_components/angular-route/angular-route.js"></script>	
+	<script type="text/javascript" src="bower_components/editarea_0_8_2/edit_area/edit_area_full.js"></script>
+	<script type="text/javascript">
+		editAreaLoader.init({
+			id : "textarea_1"		// textarea id
+			,font_size : 12
+			,word_wrap : true
+			,allow_toggle : false
+			,min_width : 800
+			,syntax: "html"			// syntax to be uses for highgliting
+			,start_highlight: true		// to display with highlight mode on start-up
+		});
+	</script>
+	<style>
+		#editor {
+			border: solid #ddd 1px;
+		}
+		.area_toolbar {
+			background: #f7f7f7 !important;
+		}
+		.area_toolbar img {
+			width: 30px;
+			height: 30px;
+		}
+		#line_number {
+			border-right: solid #ddd 1px;
+		}
+		#result {
+			border-top: solid #ddd 1px;
+			border-bottom: solid #888 1px; 
+		}
+		/*________*/
+		select , #uniqueTag {
+			width: 180px;
+			height: 50px;
+			padding-left: 20px;
+			background: #fff;
+		}
+		.crumbs-connector {
+			margin: 10px 20px;			
+		}
+	</style>
+</head>
+
+<body>
+	<div class="page animated fadeIn">
+		<nav-bar info="nav" class="navbar" role="banner"></nav-bar>
+		<!-- navbar ends -->
+		<!-- <blog-banner info="blog1"></blog-banner> -->
+		<hero-banner info="author" class="hero-banner"></hero-banner>
+		<!-- Hero Poster Ends -->
+		<section class="container" role="blog content">
+			<main class="main z-depth border">
+				<form>
+					<select name="club">
+						<option ng-repeat="club in clubs" value="{{ club }}">
+							{{ club | uppercase }}
+						</option>
+					</select>
+					<span class="crumbs-connector">></span>
+					<select name="club-inner">
+						<option ng-repeat="inner in clubInner" value="{{ inner }}">
+							{{ inner | uppercase }}
+						</option>
+					</select>
+					<span class="crumbs-connector">></span>
+					<input type="text" id="uniqueTag" placeholder="Add a Unique Tag">
+				</form>
+				<!-- {{ blogParagraphs }} -->
+			</main>
+			<!-- End of Main -->
+			<!-- sidebar starts -->
+			<aside class="sidebar sm-hide">
+				<div class="widget border">
+					<p>Contents</p>
+					<ul class="index-list">
+						<li data-ng-repeat="topic in topics">{{topic}}</li>
+					</ul>
+				</div>
+				<side-bar info="sidebar"></side-bar>
+			</aside>
+		</section>
+		<!-- .main blog container ends -->
+		<!-- <p class="posts-text">Read these latest articles<br></p> -->
+		<section class="posts-card">
+			<div class="preloader-box" ng-hide="postsLoaded">
+				<div class="preloader"></div>
+			</div>
+			<div class="card-details border" ng-repeat="post in posts | orderBy : 'date'" ng-show="postsLoaded">
+				<div class="img-container">
+					<img ng-src=" {{post.imgsrc}} ">
+					<div class="overlay">
+						<div class="caption">
+							<a ng-href="{{post.link}}">View</a>
+						</div>
+					</div>
+				</div>
+				<p>{{post.title}} ({{post.date | date}})</p>
+			</div>
+			<!-- <input autofocus> -->
+		</section>
+		<blog-footer info="footer" class="footer bg-dk-purple"></blog-footer>
+		<div class="modal" id="commentModal">
+			<span class="closeModal icon-cross"></span>
+			<h2>Fb Comments Coming Soon ..</h2>
+		</div>
+	</div>
+	<!-- Page ends -->
+
+	<!-- Scripts -->
+
+	<!-- Modules -->
+	<script src="js/app.js"></script>
+
+	<!-- Controllers -->
+	<script src="js/controllers.js"></script>
+
+	<!-- Directives -->
+	<script src="js/directives.js"></script>
+
+
+	<!-- Factories -->
+
+	<script src="js/factories.js"></script>
+
+	<!--
+	<script type="text/javascript" src="js/main.js"></script> 
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
+	<script src="js/routes.js"></script>
+	
+	-->
+</body>
+</html>

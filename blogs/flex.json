@@ -1,8 +1,11 @@
 {
 	"pagename" : "Starting with Flexbox and its case study" ,
 	"author" : {
-		        "image":"assets/dp1.png","name":"Aditya Agarwal","title":"Starting with Flexbox and its case study"
+		        "image":"assets/dp1.png",
+		        "name":"Aditya Agarwal",
+		        "title":"Starting with Flexbox and its case study"
 		       } ,
+	"uniqueTag" : "flex" ,
 	"topics" : [
 	            "Introduction","Get Started",
 	            "Prerequisites","Examples",

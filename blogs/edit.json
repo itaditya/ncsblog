@@ -1,0 +1,14 @@
+{
+	"pagename" : "Make A Blog" ,
+	"author" : {
+		        "image":"assets/dp1.png","name":"Aditya Agarwal","title":"Write Blog Title Here"
+		       } ,
+	"uniqueTag" : "edit" ,
+	"topics" : [
+	            "We are","6 topics",
+	            "To Segregate","Your Blog",
+	            "Please","Edit us"
+	           ] ,
+	"content" : "<ul class=\"blog-paragraphs\">\n\n\t\t\t\t\t<li role=\"edit\">\n\t\t\t\t\t\t<h2 class=\"heading\">\n\t\t\t\t\t\t\tWrite the blog here \n\t\t\t\t\t\t</h2>\n\t\t\t\t\t\t<p class=\"info-text\">\n\t\t\t\t\t\t\t<form method=\"post\"><textarea id=\"textarea_1\" name=\"content\" cols=\"80\" rows=\"30\"></textarea><br></form><button id=\"postBlogBtn\">Submit Blog</button><a id=\"downloadAnchorElem\"> The Post is now Downloading</a></p></li>\n\t\t\t\t\t<!-- Edit portion of blog completes -->\n\n\t\t\t\t</ul>"
+
+}

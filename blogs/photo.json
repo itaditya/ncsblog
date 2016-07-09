@@ -3,6 +3,7 @@
 	"author" : {
 		        "image":"assets/dp2.jpg","name":"Ankit Jain","title":"Editing Photos with Photoshop"
 		       } ,
+	"uniqueTag" : "photo" ,
 	"topics" : [
 	            "Introduction","Get Started",
 	            "Prerequisites","Examples",
