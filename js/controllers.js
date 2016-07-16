@@ -11,14 +11,6 @@ angular.module('blogControllers', ['blogApp'])
             navbrand : 'NCS BLOG'
         };
 
-        $scope.postsLoaded = false ;
-        
-        blogFactory.getPosts().success(
-            function(jsonData, statusCode){
-              console.log('The request was successful!', statusCode);
-              $scope.posts = jsonData.posts;
-              $scope.postsLoaded = true ;
-          });
         // $scope.$on('ngRepeatFinished',function(){
         //   console.log('Hi');
         // });
@@ -70,6 +62,17 @@ angular.module('blogControllers', ['blogApp'])
             'b'
           ];
         }
+
+        $scope.postsLoaded = false ;
+      
+        angular.element(document).ready(function () {
+          blogFactory.getPosts().success(
+              function(jsonData, statusCode){
+                console.log('The request was successful!', statusCode);
+                $scope.posts = jsonData.posts;
+                $scope.postsLoaded = true ;
+          });
+        });
     });
 
     // .controller('blogControllers',

@@ -138,8 +138,12 @@ function CtrlPressed(e) {
 // return true if Shift key is pressed
 function ShiftPressed(e) {
 	if (window.event) {
+
 		return (window.event.shiftKey);
 	} else {
 		return (e.shiftKey || (e.modifiers>3));
 	}
 };
+
+
+// document.querySelector("#uniqueTag").focus();

@@ -12,7 +12,8 @@ body, html, table, form, textarea{
 }
 
 #editor{
-	border: solid #888 1px;
+	/*border: solid #888 1px;*/
+	border: solid #ddd 1px;
 	overflow: hidden;
 }
 

@@ -85,7 +85,7 @@ angular.module('blogApp')
             return $http.get('partials/posts.json')
               .error(function (data) {
                 console.log('There was an error!', data);
-              })
+              });
         };
         factory.getCategories = function() {
             return categories;
@@ -94,27 +94,26 @@ angular.module('blogApp')
             return $http.get(path)
               .error(function (data) {
                 console.log('There was an error!', data);
-              })
+              });
         };
         factory.runEditorJs = function() {
-            console.log('Lets Make a Blog');
-
+            console.log('Lets Make a Blog'); 
 
             var topicList = [
-            ]
+            ];
             var topicListSrc = document.querySelectorAll('.index-list li');
 
 
             for (var i = 0; i < topicListSrc.length; i++) {
                 topicListSrc[i].setAttribute('contenteditable','true');
-            };
+            }
             document.querySelector('.topic h2').setAttribute('contenteditable','true');
 
 
             function DataToObject() {
                 for (var i = 0; i < topicListSrc.length; i++) {
                     topicList[i] = topicListSrc[i].innerHTML;
-                };
+                }
 
                 var postContent = {
                     pagename : document.querySelector('.topic h2').innerHTML,
@@ -126,37 +125,192 @@ angular.module('blogApp')
                     uniqueTag :  document.querySelector('#uniqueTag').value,
                     topics : topicList ,
                     content : editAreaLoader.getValue('textarea_1') 
-                }
+                };
                 return postContent ;
             }
 
             //The Download blog In Json Mechanism
             var postBlogBtn = document.querySelector('#postBlogBtn');
             postBlogBtn.addEventListener('click',function(e) {
+                var uniqueTag = document.querySelector('#uniqueTag');
+                if(uniqueTag.classList.contains("ng-invalid")){
+                    this.style.opacity = "0.7";
+                    var origHTML = this.innerHTML;
+                    this.innerHTML = "Correct Tag First";
+                    var that = this;
+                    setTimeout(function() {
+                        that.innerHTML = origHTML;
+                        uniqueTag.focus();
+                    },800);
+                    return false;
 
-                var postContent = DataToObject();
-                var postContentInJson = JSON.stringify(postContent);
-                console.log(postContentInJson);
-                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(postContentInJson);
+                }
+                else {
+                    this.style.opacity = "1";
+                    var postContent = DataToObject();
+                    var postContentInJson = JSON.stringify(postContent);
+                    console.log(postContentInJson);
+                    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(postContentInJson);
 
-                var dlAnchorElem = document.getElementById('downloadAnchorElem');
-                dlAnchorElem.setAttribute("href",dataStr);
-                var FileName = document.querySelector('#uniqueTag').value + '.json' ;
-                dlAnchorElem.setAttribute("download", FileName);
-                dlAnchorElem.style.color = "#000";
-                dlAnchorElem.click();
+                    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+                    dlAnchorElem.setAttribute("href",dataStr);
+                    var FileName = uniqueTag.value + '.json' ;
+                    dlAnchorElem.setAttribute("download", FileName);
+                    dlAnchorElem.style.color = "#000";
+                    dlAnchorElem.click();
+                }
+            });
+
+            // The Save Blog as Draft Mechanism 
+            var saveBlogBtn = document.querySelector('#saveBlogBtn');
+            saveBlogBtn.addEventListener('click',function(e) {
+                localStorage.setItem('draftBlog',JSON.stringify(DataToObject()));
+                saveBlogBtn.innerHTML = "Saved as Draft !";
+                setTimeout(function(){
+                    saveBlogBtn.innerHTML = "Save Blog as Draft";
+                },2000);
+            });
+
+            // The Preview Blog as Draft Mechanism 
+            var previewBlogBtn = document.querySelector('#previewBlogBtn');
+            previewBlogBtn.addEventListener('click',function(e) {
+
+                var main = document.querySelector('.main');
+                var editItems = main.children;
+                for (var i = 0; i < 2; i++) {
+                    editItems[i].style.display = "none";
+                }
+                var previewBlogContent = editAreaLoader.getValue('textarea_1') 
+                var saveBtnHTML = "<div><br><br><button id=\"saveChangesBtn\">Save Changes</button></div>" ;
+
+                main.insertAdjacentHTML('beforeend',previewBlogContent);
+                main.children[2].setAttribute('contenteditable','true');
+
+                main.insertAdjacentHTML('beforeend',saveBtnHTML);
+                document.querySelector('.input-field').focus();
+
+                var saveChangesBtn = document.querySelector('#saveChangesBtn');
+                saveChangesBtn.addEventListener('click' , function() {
+                    main.children[2].setAttribute('contenteditable','false');
+                    editAreaLoader.setValue('textarea_1',main.children[2].outerHTML);
+
+                    var editItems = main.children;
+                    for (var i = 0; i < 2; i++) {
+                        editItems[i].style.display = "block";
+                    }
+                    main.removeChild(main.children[3]);
+                    main.removeChild(main.children[2]);
+                });
+            });
+
+            // The Load Blog as Draft Mechanism 
+            var loadBlogBtn = document.querySelector('#loadBlogBtn');
+            loadBlogBtn.addEventListener('click',function(e) {
+                var blogObj = JSON.parse(localStorage.getItem('draftBlog'));
+                editAreaLoader.setValue('textarea_1', blogObj.content)
+                loadBlogBtn.innerHTML = " Draft Loaded !";
+                setTimeout(function(){
+                    loadBlogBtn.innerHTML = " Load Draft";
+                },2000);
+            });
+
+            // The initiate Blog as Draft Mechanism 
+            var initiateBlogBtn = document.querySelector('#initiateBlogBtn');
+            initiateBlogBtn.addEventListener('click',function() {
+
+                var topicListSrc = document.querySelectorAll('.index-list li');
+
+                var liStr = "<ul class=\"blog-paragraphs\">\n";
+                for (var i = 0; i < topicListSrc.length; i++) {
+                    liStr += "\n<li role=\"" + topicListSrc[i].innerHTML + "\"></li>";
+                }
+                liStr += "\n\n</ul>"
+                editAreaLoader.setValue('textarea_1', liStr);
+                initiateBlogBtn.innerHTML = " Content Initiated !";
+                setTimeout(function(){
+                    initiateBlogBtn.innerHTML = "Change Content";
+                },2000);
             })
+
+            var insertTags = [
+                {
+                    open : "<h2 class=\"heading\">" ,
+                    close : "</h2>"
+                } ,
+                {
+                    open : "<p class=\"info-text\">" ,
+                    close : "</p>"
+                } ,
+                {
+                    open : "<a href=\" \" class=\"hyperlink txt-green\" >" ,
+                    close : "</a>"
+                } , 
+                {
+                    open : "<strong> " ,
+                    close : " </strong>"
+                } ,
+                {
+                    open : "<span class=\"emphasise\"> " ,
+                    close : "</span>"
+                } ,
+                {
+                    open : "<div class=\"support-image\"><img src=\"" ,
+                    close : "\" class=\"border z-depth-1\"></div>"
+                } ,
+                {
+                    open : "<pre class=\"codebox bg-dk-purple\"> " ,
+                    close : "</pre>"
+                } ,
+                {
+                    open : "<div class=\"quoted-text\"><p>" ,
+                    close : "</p></div>"
+                } ,
+                {
+                    open : "<div class=\"codepen\">" ,
+                    close : "</div>"
+                } 
+
+            ];
+
+            var insertBtnList = document.querySelectorAll('.insert-list li button');
+            for (var i = 0; i < insertBtnList.length; i++) {
+                insertBtnList[i].dataset.insert = i;
+            }
+            for (var i = 0; i < insertBtnList.length; i++) {
+                insertBtnList[i].addEventListener('click',function(){
+                    var index =  this.dataset.insert;
+                    editAreaLoader.insertTags('textarea_1', insertTags[index].open, insertTags[index].close);
+                });
+            }
+            document.addEventListener('keydown',function(event){
+                var evt = event || window.event;
+                if(evt.ctrlKey && evt.keyCode >= 49 && evt.keyCode <= 57) {
+                    insertBtnList[evt.keyCode-49].click();
+                    evt.preventDefault();
+                }
+                // 48-57  : 0-9
+            });
+            // console.log(frames['frame_textarea_1'].document.body);
+            var main = document.querySelector('.main');
+            angular.element(main).ready(function () {
+
+                var iframe = document.getElementById('frame_textarea_1').contentDocument;
+                var cssLink = "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/EditAreastyle.css\">";
+
+                iframe.head.insertAdjacentHTML("beforeend",cssLink);
+            });
         };
         factory.runJs = function() {
 
             var wid1 = document.getElementsByClassName('widget')[0];
-            console.log(screen.width);
 
             var page = document.getElementsByClassName('page')[0];
             page.addEventListener('scroll',sidebarFix);
 
             // keep page variable and event listener together
             // page.scrollBy('130');
+            
+
 
             var sidebar = document.getElementsByClassName('sidebar')[0];
 
@@ -200,6 +354,16 @@ angular.module('blogApp')
                 }
             }
 
+            var btnList = document.querySelectorAll('.btn');
+            for (var i = btnList.length - 1; i >= 0; i--) {
+                btnList[i].addEventListener("click",function() {
+                    this.classList.add("btn-click");
+                    setTimeout(function(){
+                        document.querySelector('.btn-click').classList.remove("btn-click");
+                    },600);
+                })
+            };
+
             // ---------------------------------
 
             // Function to trigger callback when an element is visible on screen
@@ -222,7 +386,7 @@ angular.module('blogApp')
                 var offset = 0 ;
                 var siblings = elem.previousElementSibling;
 
-                while(siblings != null) {
+                while(siblings !== null) {
                     offset += siblings.clientHeight;
                     siblings = siblings.previousElementSibling;
                 }
@@ -247,7 +411,7 @@ angular.module('blogApp')
                     var content = {
                         body: 'you can use CSS to darken images',
                         icon: '../assets/dp2.jpg'
-                    }
+                    };
                     notifyMe('Did You Know',content);
                 });
             }
@@ -285,7 +449,7 @@ angular.module('blogApp')
                 var userDetails = {
                     name : userName.value ,
                     domain : userDomain.value
-                }
+                };
 
                 localStorage.setItem('details',JSON.stringify(userDetails));
                 console.log(JSON.parse(localStorage.details));
@@ -298,7 +462,7 @@ angular.module('blogApp')
                 var username = null;
                 if (localStorage.length > 0) {
                     username = JSON.parse(localStorage.details).name;   
-                };
+                }
                 if(typeof username != 'object') {
                     console.log('Hello ',username);
                     var elem = document.querySelector('#user-widget');
@@ -356,9 +520,6 @@ angular.module('blogApp')
             /* Future --
 
             * -Use google prety code
-            * -Use codepen embeds --done
-            * -Use local storage to save user name and description like front/back/design.. --done
-            * -Use notification to display a did you know when scrolled just beore footer. --done   
             * -Use scroll event to send ajax request for new recent posts .
             */
 
@@ -368,7 +529,7 @@ angular.module('blogApp')
             var contbig = document.getElementsByClassName('main')[0];
 
 
-        }
+        };
 
         return factory;
     });

@@ -495,7 +495,7 @@
 		}
 	};
 	
-	EditArea.prototype.load_script= function(url){
+	EditArea.prototype.load_script= function(url){		
 		try{
 			script = document.createElement("script");
 			script.type = "text/javascript";
