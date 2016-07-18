@@ -1,21 +1,13 @@
-/* Controllers */
-
-// var blogApp = angular.module('blogApp', ['blogControllers']);
+/* Controller */
 
 angular.module('blogControllers', ['blogApp'])
     .controller('blogCtrls',
-      function blogCtrls( $scope , blogFactory ) {
+      function blogCtrls($scope, blogFactory) {
         'use strict';
 
         $scope.nav = {
             navbrand : 'NCS BLOG'
         };
-
-        // $scope.$on('ngRepeatFinished',function(){
-        //   console.log('Hi');
-        // });
-        // ----------------------------------------
-        // For footer ---
 
         $scope.footer = {
             title : 'Nibble Computer Society' ,
@@ -42,27 +34,41 @@ angular.module('blogControllers', ['blogApp'])
               var parent = document.getElementsByClassName('main')[0];
               parent.insertAdjacentHTML('beforeend',jsonData.content);
           });
-          
+
         angular.element(document).ready(function () {
-            blogFactory.runJs();
+            blogFactory.runCommonJs();
         });
 
         if(sloc == '/edit'){
           angular.element(document).ready(function () {
               blogFactory.runEditorJs();
           });
-          $scope.clubs = [
-            'web' , 
-            'programming' ,
-            'technical' ,
-            'design'
-          ];
-          $scope.clubInner = [
-            'a' , 
-            'b'
-          ];
+
+          var options = blogFactory.getOptions();
+
+
+          var primaries = [];
+          var secondaries = [];
+
+          var i = 0, prop = 0;
+          for (prop in options) {
+            if (options.hasOwnProperty(prop)) {
+              primaries[i] = prop;
+              i++;
+            }
+          }
+
+          $scope.clubs = primaries;
+          $scope.clubInner = options["web"].subOptions;
+
+        }
+        else {
+          angular.element(document).ready(function () {
+              blogFactory.runJs();
+          });
         }
 
+        // Preloader Mechanism 
         $scope.postsLoaded = false ;
       
         angular.element(document).ready(function () {
@@ -74,22 +80,3 @@ angular.module('blogControllers', ['blogApp'])
           });
         });
     });
-
-    // .controller('blogControllers',
-    //   function( $scope , blogFactory) {
-    //     $scope.nav = {
-    //         navbrand : 'NCS BLOG'
-    //     };
-    //     $scope.posts = blogFactory.getPosts();
-    //     // $scope.$on('ngRepeatFinished',function(){
-    //     //   console.log('Hi');
-    //     // });
-    //     // ----------------------------------------
-    //     // For footer ---
-
-    //     $scope.footer = {
-    //         title : 'Nibble Computer Society' ,
-    //         categories :  blogFactory.getCategories()
-    //     }
-    //     // -----------------
-    // })

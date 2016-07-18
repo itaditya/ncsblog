@@ -13,64 +13,68 @@ angular.module('blogApp')
     .factory('blogFactory',function($http) {
         'use strict';
 
-        // Content Controllers
         var breads = [
             'web > ' ,
             'frontend > ' ,
             'flex'
         ];
 
-        // Blog Controllers
-
-        // var posts = [
-        //     {
-        //         date : '2016-06-21' ,
-        //         imgsrc : 'assets/l2.jpg' ,
-        //         link : 'https://abc.x' ,
-        //         title : 'How to add images and videos in html'
-        //     } ,
-        //     {
-        //         date : '2014-06-12' ,
-        //         imgsrc : 'assets/l1.jpg' ,
-        //         link : 'https://abc.y' ,
-        //         title : 'Making a text shadow effect in photoshop'
-        //     } ,
-        //     {
-        //         date : '2016-03-02' ,
-        //         imgsrc : 'assets/l3.jpg' ,
-        //         link : 'https://abc.z' ,
-        //         title : 'How to solve programs on codechef'
-        //     }
-        // ];
-        // console.log(JSON.stringify(posts));
+        var options = {
+          web : {
+            subOptions : [
+              'html' ,
+              'css' , 
+              'javascript' ,
+              'php',
+              'api' ,
+              'complete'
+            ]
+          },
+          programming : {
+            subOptions : [
+              'cchef' ,
+              'complete'
+            ]
+          },
+          design : {
+            subOptions : [
+              'html' ,
+              'css' , 
+              'javascript' ,
+              'php',
+              'api' ,
+              'complete'
+            ]
+          }
+        };
 
         var categories = [
                 {
-                    title : 'Backend' ,
+                    title : 'Web Development' ,
                     tags : [
                         'frontend' ,
                         'design'
                     ]
                 },
                 {
-                    title : 'Frontend' ,
+                    title : 'Technical' ,
                     tags : [
-                        'frontend' ,
-                        'design'
+                        'hack whatsapp' ,
+                        'pokemon go'
                     ]
                 },
                 {
                     title : 'Programming' ,
                     tags : [
-                        'frontend' ,
-                        'design'
+                        'codechef' ,
+                        'greedy algorithim'
                     ]
                 },
                 {
                     title : 'Designers' ,
                     tags : [
-                        'frontend' ,
-                        'design'
+                        'how to photoshop' ,
+                        'design an id card'
                     ]
                 }
             ];
@@ -79,6 +83,9 @@ angular.module('blogApp')
 
         factory.getBreads = function() {
             return breads;
+        };
+        factory.getOptions = function() {
+            return options;
         };
         factory.getPosts = function() {
             // return posts;
@@ -96,6 +103,72 @@ angular.module('blogApp')
                 console.log('There was an error!', data);
               });
         };
+        factory.runCommonJs = function() {
+            var page = document.querySelector('.page');
+            page.addEventListener('scroll',sidebarFix);
+
+            // keep page variable and event listener together
+            // page.scrollBy('130');
+            
+
+
+            var sidebar = document.querySelector('.sidebar');
+
+            
+            var heroheight = document.querySelector('.hero-banner').clientHeight;
+
+            function sidebarFix(e) {
+                var scrolled = page.scrollTop;
+                if(scrolled >= heroheight) {
+                    sidebar.style.position = 'fixed';
+                }
+                else {
+                    sidebar.style.position = 'relative';
+                }
+            }
+
+            // Modal toggling ------------------
+            
+            var modalBtn = document.querySelectorAll('.modalBtn');
+
+            for (var i = modalBtn.length - 1; i >= 0; i--) {
+                modalBtn[i].addEventListener('click' , toggleCommentModal);
+            };
+
+            function toggleCommentModal() {
+                var closeBtn = toggler(this);
+                var that = this;
+                closeBtn.addEventListener('click' , function() {
+                    that.click();
+                });
+            }
+
+            function toggler(elem) {
+
+                var comModal = elem.dataset.toggleId;
+                comModal = document.getElementById(comModal);
+
+                if (comModal.style.display == 'block') {
+                    comModal.style.display = 'none';
+                }
+                else {
+                    comModal.style.display = 'block';
+                    comModal.classList.add('animated');
+                    comModal.classList.add('fadeIn');
+                }
+                return comModal.querySelector(".closeModal");
+            }
+
+            // Logic
+            // Target all .modalBtn and attach click event
+            // toggleCommentModal fnction is to instrct toggler fn to toggle what.
+            // toggler retrns the close btn element of the crrently opened modal only.
+            // that holds the reference to the respective .modalBtn only .
+            // Now on clicking the .modalBtn again that modal will be toggled .
+
+            /* _____________ */
+        };
+
         factory.runEditorJs = function() {
             console.log('Lets Make a Blog'); 
 
@@ -180,7 +253,7 @@ angular.module('blogApp')
                 for (var i = 0; i < 2; i++) {
                     editItems[i].style.display = "none";
                 }
-                var previewBlogContent = editAreaLoader.getValue('textarea_1') 
+                var previewBlogContent = editAreaLoader.getValue('textarea_1'); 
                 var saveBtnHTML = "<div><br><br><button id=\"saveChangesBtn\">Save Changes</button></div>" ;
 
                 main.insertAdjacentHTML('beforeend',previewBlogContent);
@@ -207,7 +280,7 @@ angular.module('blogApp')
             var loadBlogBtn = document.querySelector('#loadBlogBtn');
             loadBlogBtn.addEventListener('click',function(e) {
                 var blogObj = JSON.parse(localStorage.getItem('draftBlog'));
-                editAreaLoader.setValue('textarea_1', blogObj.content)
+                editAreaLoader.setValue('textarea_1', blogObj.content);
                 loadBlogBtn.innerHTML = " Draft Loaded !";
                 setTimeout(function(){
                     loadBlogBtn.innerHTML = " Load Draft";
@@ -224,13 +297,14 @@ angular.module('blogApp')
                 for (var i = 0; i < topicListSrc.length; i++) {
                     liStr += "\n<li role=\"" + topicListSrc[i].innerHTML + "\"></li>";
                 }
-                liStr += "\n\n</ul>"
+                liStr += "\n\n</ul>";
                 editAreaLoader.setValue('textarea_1', liStr);
+                var origHTML = initiateBlogBtn.innerHTML;
                 initiateBlogBtn.innerHTML = " Content Initiated !";
                 setTimeout(function(){
-                    initiateBlogBtn.innerHTML = "Change Content";
+                    initiateBlogBtn.innerHTML = origHTML;
                 },2000);
-            })
+            });
 
             var insertTags = [
                 {
@@ -282,14 +356,6 @@ angular.module('blogApp')
                     editAreaLoader.insertTags('textarea_1', insertTags[index].open, insertTags[index].close);
                 });
             }
-            document.addEventListener('keydown',function(event){
-                var evt = event || window.event;
-                if(evt.ctrlKey && evt.keyCode >= 49 && evt.keyCode <= 57) {
-                    insertBtnList[evt.keyCode-49].click();
-                    evt.preventDefault();
-                }
-                // 48-57  : 0-9
-            });
             // console.log(frames['frame_textarea_1'].document.body);
             var main = document.querySelector('.main');
             angular.element(main).ready(function () {
@@ -299,60 +365,60 @@ angular.module('blogApp')
 
                 iframe.head.insertAdjacentHTML("beforeend",cssLink);
             });
+
+            // Keyboard shortcuts inside iframe.
+           setTimeout(function () {
+
+                var iframe = document.getElementById('frame_textarea_1').contentDocument;
+
+                var textarea = iframe.body.querySelector("#textarea");
+                textarea.addEventListener('keydown',function(event){
+                    var evt = event || window.event;
+                    if (evt.ctrlKey) {
+                        // console.log(evt.keyCode);
+                        if(evt.keyCode >= 49 && evt.keyCode <= 57) {
+                            insertBtnList[evt.keyCode-49].click();
+                            evt.preventDefault();
+                        }
+                        else if(evt.keyCode == 83) {
+                            // "Ctrl + S"
+                            document.querySelector("#saveBlogBtn").click();
+                            evt.preventDefault();
+                        }
+
+                        else if(evt.keyCode == 76) {
+                            // "Ctrl + L"
+                            document.querySelector("#loadBlogBtn").click();
+                            evt.preventDefault();
+                        }
+                        else if(evt.keyCode == 80) {
+                            // "Ctrl + L"
+                            document.querySelector("#previewBlogBtn").click();
+                            evt.preventDefault();
+                        }
+                        if(evt.keyCode == 191) {
+                            // "Shift + /"
+                            var hints = [
+                                "\nHeading: Ctrl + 1", "\nParagraph: Ctrl + 2",
+                                "\nLink: Ctrl + 3", "\nBold Text: Ctrl + 4",
+                                "\nEmphasised Text: Ctrl + 5", "\nImage: Ctrl + 6",
+                                "\nCode: Ctrl + 7", "\nQuote: Ctrl + 8",
+                                "\nEmbed: Ctrl + 9"
+                            ] ;
+                            alert(hints);
+                            evt.preventDefault();
+                        }
+                        else {
+                            // do nothing ..
+                        }
+                    }
+                    // 48-57  : 0-9
+                });
+            },1000);
         };
         factory.runJs = function() {
 
-            var wid1 = document.getElementsByClassName('widget')[0];
-
-            var page = document.getElementsByClassName('page')[0];
-            page.addEventListener('scroll',sidebarFix);
-
-            // keep page variable and event listener together
-            // page.scrollBy('130');
-            
-
-
-            var sidebar = document.getElementsByClassName('sidebar')[0];
-
-            var herobanner = document.getElementsByClassName('hero-banner')[0];
-            var heroheight = herobanner.clientHeight;
-
-            function sidebarFix(e) {
-                var scrolled = page.scrollTop;
-                if(scrolled >= heroheight) {
-                    sidebar.style.position = 'fixed';
-                }
-                else {
-                    sidebar.style.position = 'relative';
-                }
-            }
-
-            // Modal toggling ------------------
-
-            var comBtn = document.getElementById('comBtn');
-            comBtn.addEventListener('click' , toggleCommentModal);
-
-            var closeBtn = document.getElementsByClassName('closeModal')[0];
-
-            function toggleCommentModal() {
-                toggler(comBtn);
-                closeBtn.addEventListener('click' , toggleCommentModal);
-            }
-
-            function toggler(elem) {
-
-                var comModal = elem.dataset.toggleId;
-                comModal = document.getElementById(comModal);
-
-                if (comModal.style.display == 'block') {
-                    comModal.style.display = 'none';
-                }
-                else {
-                    comModal.style.display = 'block';
-                    comModal.classList.add('animated');
-                    comModal.classList.add('fadeIn');
-                }
-            }
+            var page = document.querySelector(".page");
 
             var btnList = document.querySelectorAll('.btn');
             for (var i = btnList.length - 1; i >= 0; i--) {
@@ -361,8 +427,8 @@ angular.module('blogApp')
                     setTimeout(function(){
                         document.querySelector('.btn-click').classList.remove("btn-click");
                     },600);
-                })
-            };
+                });
+            }
 
             // ---------------------------------
 
@@ -373,9 +439,6 @@ angular.module('blogApp')
                 if(scrolled >= offset) {
                     callback();
                 }
-                // else {
-                //  sidebar.style.position = 'relative';
-                // }
             }
 
             // -----------------------------------------------------------------
@@ -401,11 +464,11 @@ angular.module('blogApp')
 
             function showNotifications() {
 
-                var elem = document.getElementsByClassName('footer')[0];
+                var elem = document.querySelector('.footer');
 
-                //-500 is done to trigger before footer is completely viewed
+                //-600 is done to trigger before footer is completely viewed
 
-                scrollCall((offsetTop(elem)-800),function() {
+                scrollCall((offsetTop(elem)-600),function() {
                     page.removeEventListener('scroll' , showNotifications);
                     console.log('notification');
                     var content = {
@@ -413,23 +476,6 @@ angular.module('blogApp')
                         icon: '../assets/dp2.jpg'
                     };
                     notifyMe('Did You Know',content);
-                });
-            }
-
-            page.addEventListener('scroll' , showRecentPosts);
-
-            function showRecentPosts() {
-
-                var elem = document.getElementsByClassName('posts-card')[0];
-                scrollCall(offsetTop(elem),function() {
-                    page.removeEventListener('scroll' , showRecentPosts);
-                    console.log('ajax');
-                    // $http.get('js/JSON/posts.json')
-                    //     .error(function (data) {
-                    //         console.log('There was an error!', data);
-                    //     })
-                    //     .success(function(jsonData,statusCode){
-                    //     });
                 });
             }
 
@@ -527,24 +573,21 @@ angular.module('blogApp')
             // clicking on code (maybe I will add a button to do this)
 
             var contbig = document.getElementsByClassName('main')[0];
-
-
         };
 
         return factory;
     });
 
 
-            // Project Bugs -----
-            /*
-            * 1) search icon problem in firefox . 
-            * 2) placeholder color in firefox . 
-            * 3) trouble with height of main and/or container 
-                 causing overflowing of content rather than increasing height .
-                 -- maybe the problem is with codepen only (yippee!)
-                 --- fixed :) by oveflow scroll on codepen (!strange)
-            * 4) js anim to respond to btn clicks .
-            * 5) sidebar problem with firefox .
-            * 6) JS is loading before Angular can render the page .
-                 --- fixed ;) by placing js in factory and calling it from ctrl on docment loaded.
-            */
+// Project Bugs -----
+/*
+    * search icon problem in firefox . 
+    * placeholder color in firefox . 
+    * trouble with height of main and/or container 
+     causing overflowing of content rather than increasing height .
+     -- maybe the problem is with codepen only (yippee!)
+     --- fixed :) by oveflow scroll on codepen (!strange)
+    * sidebar problem with firefox .
+    * JS is loading before Angular can render the page .
+     --- fixed ;) by placing js in factory and calling it from ctrl on docment loaded.
+*/
