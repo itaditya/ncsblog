@@ -7,8 +7,35 @@
 	<link rel="stylesheet" type="text/css" href="css/lightanim.css">
 	<script src="bower_components/angular/angular.js"></script>	
 	<script src="bower_components/angular-route/angular-route.js"></script>	
+	<script>
+	    angular.module("blogApp", ['ngRoute'])
+	    .config(['$routeProvider',
+	        function($routeProvider) {
+	        	console.log('test');
+	            $routeProvider.
+	                when('/route1', {
+	                    templateUrl: 'angular-route-template-1.jsp',
+	                    controller: 'RouteController'
+	                }).
+	                when('/route2', {
+	                    templateUrl: 'angular-route-template-2.jsp',
+	                    controller: 'RouteController'
+	                }).
+	                otherwise({
+	                    redirectTo: '/'
+	                });
+	        }])
+	    .controller("RouteController", function($scope) {
+	    	console.log("Route");
+	    })
+	</script>
 </head>
 <body>
+	<a href="#/route1">Route 1</a><br/>
+	<a href="#/route2">Route 2</a><br/>
+
+
+	<div ng-view></div>
 	<div class="page animated fadeIn">
 		<nav-bar info="nav" class="navbar" role="banner"></nav-bar>
 		<!-- navbar ends -->

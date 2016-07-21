@@ -54,36 +54,58 @@ for web/prog/design
 * The no. of such sections will create input blocks of same no. on left side .
 * In each section you will have to enter the respective content .
 * In between the text you can place the following --->
-	|
-    |__ Links          
-    |		<a href="# hyperLink " class="hyperlink txt-green" > Link </a>
-	|
-    |__ Bold Text
-    |	    <strong> Bold Text </strong>
-	|
-    |__ Emphasised Text
-    |		<span class="emphasise"> Emphasised Text </span>
-	|
-    |__ Images 
-    |		<div class="support-image">
-    |			<img src="# imageLink" class="border z-depth-1">
-    |		</div>
-	|
-    |__ Code
-    |		<pre class="codebox bg-dk-purple"> Code </pre>
-	|
-    |__ Quote
-    |		<div class="quoted-text">
-    |			<p>
-    |				Quoted Text 
-    |			</p>
-    |		</div>
-	|
-    |__ Embedding ( YT video / Codepen )
-    		<div class="codepen">
-    			Code inclding iframe					
-    		</div>
+    <br>
 
+    |__ Links    
+    ```      
+       <a href="# hyperLink " class="hyperlink txt-green" > Link </a>
+    ```
+    <br>
+
+    |__ Bold Text
+    ```
+    <strong> Bold Text </strong>
+    ```
+    <br>
+
+    |__ Emphasised Text
+    ```
+        <span class="emphasise"> Emphasised Text </span>
+    ```
+    <br>
+
+    |__ Images 
+    ```
+        <div class="support-image">
+           <img src="# imageLink" class="border z-depth-1">
+        <div>
+    ```
+    <br>        
+    
+    |__ Code
+    ```
+        <pre class="codebox bg-dk-purple"> Code </pre>
+    ```
+    <br>
+
+    |__ Quote
+    ```
+        <div class="quoted-text">
+            <p>
+               Quoted Text 
+            </p>
+        </div>
+    ```
+    <br>
+
+    |__ Embedding ( YT video / Codepen )
+    ```
+        <div class="codepen">
+            Code inclding iframe                    
+        </div>
+    ```
+
+---
 ---
 
 
