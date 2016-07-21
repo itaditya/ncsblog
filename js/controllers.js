@@ -18,6 +18,7 @@ angular.module('blogControllers', ['blogApp'])
 
         var loc = window.location.pathname;
         var sloc = loc.substring(loc.lastIndexOf('/'),(loc.lastIndexOf('.')-4));
+        // var sloc = loc.substring(loc.lastIndexOf('/'));
         var path = "blogs"+sloc+".json";
 
         blogFactory.getBlogData(path)
@@ -76,7 +77,7 @@ angular.module('blogControllers', ['blogApp'])
               function(jsonData, statusCode){
                 console.log('The request was successful!', statusCode);
                 $scope.posts = jsonData.posts;
-                $scope.postsLoaded = true ;
+                $scope.postsLoaded = true;
           });
         });
     });

@@ -14,7 +14,7 @@
 			,font_size : 14
 			,word_wrap : true
 			,allow_toggle : false
-			,allow_resize : "no"
+			,allow_resize : "yes"
 			,plugins : "charmap"
 			,min_width : 800
 			,syntax: "html"			// syntax to be uses for highgliting
@@ -125,11 +125,14 @@
 						<li><button>Embed</button></li>
 					</ul>
 				</div>
+				<div class="border widget-sm">
+					<p>Don't Be Shy, See Me Once</p>
+					<div class="btn modalBtn" data-toggle-id="helpModal">Help !</div>
+				</div>
 			</aside>
 		</section>
 		<!-- .main blog container ends -->
-		<!-- <p class="posts-text">Read these latest articles<br></p> -->
-		<section class="posts-card">
+<!-- 		<section class="posts-card">
 			<div class="preloader-box" ng-hide="postsLoaded">
 				<div class="preloader"></div>
 			</div>
@@ -144,13 +147,14 @@
 				</div>
 				<p>{{post.title}} ({{post.date | date}})</p>
 			</div>
-			<!-- <input autofocus> -->
-		</section>
+		</section> 
+	-->
 		<blog-footer info="footer" class="footer bg-dk-purple"></blog-footer>
-		<div class="modal" id="commentModal">
+		<div class="modal" id="helpModal">
 			<span class="closeModal icon-cross"></span>
-			<h2>Fb Comments Coming Soon ..</h2>
+			<h2>Help Arriving Soon ..</h2>
 		</div>
+
 	</div>
 	<!-- Page ends -->
 

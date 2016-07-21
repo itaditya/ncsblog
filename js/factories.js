@@ -141,6 +141,13 @@ angular.module('blogApp')
                 closeBtn.addEventListener('click' , function() {
                     that.click();
                 });
+                document.addEventListener('keydown' , function(event) {
+                    var evt = event || window.event;
+                    if(evt.keyCode == 27){
+                        that.click();
+                    }
+                    evt.preventDefault();
+                });
             }
 
             function toggler(elem) {
@@ -167,6 +174,14 @@ angular.module('blogApp')
             // Now on clicking the .modalBtn again that modal will be toggled .
 
             /* _____________ */
+
+
+            
+            var menu = document.querySelector(".menu");
+            menu.addEventListener("click",function(){
+                document.querySelector(".sidebar").classList.toggle("sm-hide");
+            });
+
         };
 
         factory.runEditorJs = function() {
@@ -261,6 +276,8 @@ angular.module('blogApp')
 
                 main.insertAdjacentHTML('beforeend',saveBtnHTML);
                 document.querySelector('.input-field').focus();
+                document.querySelector('.input-field').blur();
+
 
                 var saveChangesBtn = document.querySelector('#saveChangesBtn');
                 saveChangesBtn.addEventListener('click' , function() {
@@ -273,6 +290,8 @@ angular.module('blogApp')
                     }
                     main.removeChild(main.children[3]);
                     main.removeChild(main.children[2]);
+                    document.querySelector('.input-field').focus();
+                    document.querySelector('.input-field').blur();
                 });
             });
 
@@ -518,6 +537,29 @@ angular.module('blogApp')
             }
 
             greetuser();
+
+            // Jump to section Feature
+            
+            var sidebarLi = document.querySelectorAll(".index-list li");
+            var blogLi = document.querySelectorAll(".blog-paragraphs li");
+
+            function jumpToSection() {
+                
+                // var blogLi = document.querySelectorAll(".blog-paragraphs li");
+                console.log(blogLi);
+                var id = parseInt(this.dataset.target);
+                blogLi[id].setAttribute("tabindex",100);
+                blogLi[id].focus();
+            }
+            
+            if (sidebarLi.length == blogLi.length) {
+
+                for (var i =  0; i < sidebarLi.length; i++) {
+                    sidebarLi[i].dataset.target = i;
+                    sidebarLi[i].addEventListener("click",jumpToSection);
+                    blogLi[i].setAttribute("tabindex",i);
+                }
+            }
             // ------------------------------------
             // Notification Api
 
@@ -581,13 +623,12 @@ angular.module('blogApp')
 
 // Project Bugs -----
 /*
-    * search icon problem in firefox . 
     * placeholder color in firefox . 
     * trouble with height of main and/or container 
-     causing overflowing of content rather than increasing height .
+      causing overflowing of content rather than increasing height .
      -- maybe the problem is with codepen only (yippee!)
      --- fixed :) by oveflow scroll on codepen (!strange)
     * sidebar problem with firefox .
     * JS is loading before Angular can render the page .
-     --- fixed ;) by placing js in factory and calling it from ctrl on docment loaded.
+     --- fixed ;) by placing js in factory and calling it from ctrl on document loaded.
 */

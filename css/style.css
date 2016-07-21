@@ -8,6 +8,7 @@ body {
 	letter-spacing: 2px;
 	word-spacing: 3px;
 	background: #fafafa;
+	overflow: hidden;
 }
 
 /*Layout*/
@@ -28,6 +29,7 @@ li {
 	width: 100%;
 	background: #fafafa;
 	margin-right: -10px;
+	overflow-x: hidden;
 }
 .page > * {
 	display: flex;
@@ -215,9 +217,9 @@ li {
 
 }
 .caption>a:hover {
-	border: 2px solid #fff;
-	background: #fff;
-	color: rgba(0, 182, 72, 1);
+	border: 3px solid #fff;
+	background: transparent;
+	font-weight: bold;
 }
 .img-container:hover>.overlay {
 	z-index: 2;
@@ -275,8 +277,8 @@ li {
 	width: 120px;
 	height: 120px;
 	border-radius: 100%;
-	border: 10px solid #141415;
-	background: #e1e1e1;
+	/*border: 10px solid #141415;*/
+	/*background: #e1e1e1;*/
 	box-shadow: 5px 6px 14px 2px rgba(0,0,0,0.4);
 
 }
@@ -290,6 +292,11 @@ li {
 	font-family: 'handwriting';
 	margin-left: 20px;
 	color: #FBB913;
+	height: 70px;
+	vertical-align: middle;
+	line-height: 70px;
+	text-align: left;
+	width: 30%;
 }
 .main {
 	margin-top: 20px;
@@ -331,12 +338,10 @@ li {
 }
 .index-list li:hover{
 	background: rgba(0,0,0,0.1);
-	margin-left: 12px;
+	padding-left: 18px;
 	/*border-left: 2px solid  rgba(41,169,93,.67);*/
 	border-left: 2px solid rgba(229,126,49,1);
 	color: #333;
-	
-	/*color: #fff;*/
 }
 .widget {
 	/*background: linear-gradient(rgba(255,255,255,0.1),rgba(230,230,230,0.1));*/
@@ -640,6 +645,7 @@ div[role="comments"]>p:before {
 .post:hover {
 	background: rgba(0,0,0,0.6);
 	cursor: pointer;
+	border-top: 3px solid;
 }
 .post>h5 {
 	font-size: 20px;
@@ -787,7 +793,8 @@ div[role="comments"]>p:before {
 }
 .search {
 	position: relative;
-	display: inline;
+	display: flex;
+
 }
 .icon-pencil {
 	display: inline;
@@ -795,6 +802,7 @@ div[role="comments"]>p:before {
 	margin: 0;
 	width: 10px;
 	height: 10px;
+	margin-right: -8px;
 }
 .icon-pencil:before {
 	content: "\e902";
@@ -822,15 +830,39 @@ div[role="comments"]>p:before {
 	.hero-banner {
 		height: 50vh;
 	}
+	.menu {
+		margin-right: 20px;
+		/*color: #E57E31;*/
+	}
+	.menu:after {
+		content: "<";
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 40px;
+		float: right;
+		border-radius: 100%;
+		border: 2px solid #E57E31;
+	}
+	.menu:focus:after {
+		content: ">";
+		background: #fff;
+		border: none;
+	}
 	.info-text {
 		text-align: center;
 	}
 	.brand-name {
-		text-align: center;
-		width: 100%;
+		/*text-align: center;*/
+		/*width: 100%;*/
 	}
 	.sidebar {
-		width: 100%;
+		width: 60%;
+		z-index: 4;
+		right: -20px;
+		position: absolute !important;
+		top: 60px;
 	}
 	.posts-card {
 		display: block;

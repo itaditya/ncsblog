@@ -1,91 +1,63 @@
-# ncsblog
-a blogging site to share knowledge amongs geeks , started as a summer project .
+#NCS BLOG
+___
 
-for web/prog/design
+## *Project Description*
+> As a developer I felt the need for a college blogging app . I made it using
+Angular JS framework . It stands feature rich today with lots of awesome
+blog helping fellow geeks at : NCS Blog[http://adiblog.esy.es/]
 
-## Project Structure 
----
+### *Need For Blog*
 
-* The main page is ncs.html
-** The navbar has a register button .
-** and about-ncsWebsite also.
-** Now comes a banner having login fields on the right .
-** and below it is the main section. 
-** It has 4 carousels for all categories .
-** Each carousel displays the blogs of that category , acc to popularity  .
-** In one view , 3 blog cards are shown .
-** Each card contains the tech used tag , blog title , author , views .
+### *How to contribute*
 
-* The register page .
-** It has 3 fields - name , dp , ncsId .
+> Fork this repo by clicking the FORK button above ^ .
 
-* For a logged in user , he will be redirected to dashboard.html .
-** the navbar contains NewBlog btn and logout btn . 
-** the dashboard will show blog cards made by the logged in user .
-** the page has a New Blog ( + ) button on bottom right too .
-** Clicking it opens the blog editor which resembles the /...Blog.html page .
-** But every editable thing is marked with pencil .
+* then clone this repo into your local workstation using 
+	
+` git clone www.github.com/< your git id >/ncsblog.git
 
-*  ...Blog.html page is for reading blogs .
+* jump in the directory containing the cloned repo with
 
+` cd < path >
 
+* So now, you have the project ready to begin with .
 
-## How to make a blog  
---- 
+### For contribution in CSS and JS 
 
-* Visit this site : 
-* Register or Login accordingly .
-* Now you are on your dashboard .
-* Click on "New Blog" .
-* You will be redirected now .
-* On the creating page , every editable item will be marked by a pencil icon.
-* Clicking on the items to edit them . 
-* On this page , first fill the title of the blog .
-* Then in the sidebar , enter the blog sections main ideas .
-    |
-    |__ Introduction
-    |__ What you should know
-    |__ Getting Started
-    |__ Making a Layout
-    |__ Examples
-    |__ Applications
-    |__ Conclusion
+* the css/ folder holds all the css, but you should make a new file only .
+* always prefer making new classes(with sensible names) and style them whenever possible.
+* using Id to style multiple items is not alllowed (use classes) .
+* all featured JS is included in the js/factory.js file.
+* All the html elements are targeted through 
+	```
+	document.querySelector(".class_name") 
+	*and* 
+	document.querySelector("#id_name") 
 
-* The no. of such sections will create input blocks of same no. on left side .
-* In each section you will have to enter the respective content .
-* In between the text you can place the following --->
-	|
-    |__ Links          
-    |		<a href="# hyperLink " class="hyperlink txt-green" > Link </a>
-	|
-    |__ Bold Text
-    |	    <strong> Bold Text </strong>
-	|
-    |__ Emphasised Text
-    |		<span class="emphasise"> Emphasised Text </span>
-	|
-    |__ Images 
-    |		<div class="support-image">
-    |			<img src="# imageLink" class="border z-depth-1">
-    |		</div>
-	|
-    |__ Code
-    |		<pre class="codebox bg-dk-purple"> Code </pre>
-	|
-    |__ Quote
-    |		<div class="quoted-text">
-    |			<p>
-    |				Quoted Text 
-    |			</p>
-    |		</div>
-	|
-    |__ Embedding ( YT video / Codepen )
-    		<div class="codepen">
-    			Code inclding iframe					
-    		</div>
+	```
+* events are handled via 
+	
+	```
+	document.querySelector("element").addEventListener("event",function_name);
 
----
+	```
+* terminate statements via semicolons.
+* check your Js authenticity via #JsLint before sending PR(s). 
+* avoid using Global variables.
+* do not tamper with controller.js .
+* always Pull the latest code and then Push to it.
+* before sending a PR, register an issue.
+
+* use of jqLite and Vanilla Js instead of jQuery is highly supported because the project has only two dependencies : EditArea text editor and Angular Js framework.
+
+#### Main Concerns :
+* The Blog Author dashboard .
+* The Blog website landing page featuring trending and latest blogs in an intuitive manner.
+
+### For contribution in backend
+
+* will be updated soon, hold your horses. 
 
 
-
-
+*Important :* ### No Pull Request will be merged on master branch .
+Kindly use the contribute branch . 
