@@ -1,4 +1,6 @@
 #NCS BLOG
+
+[![Join the chat at https://gitter.im/itaditya/ncsblog](https://badges.gitter.im/itaditya/ncsblog.svg)](https://gitter.im/itaditya/ncsblog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ___
 
 ## *Project Description*
