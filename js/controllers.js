@@ -18,8 +18,17 @@ angular.module('blogControllers', ['blogApp'])
 
         var loc = window.location.pathname;
         var sloc = loc.substring(loc.lastIndexOf('/'),(loc.lastIndexOf('.')-4));
-        // var sloc = loc.substring(loc.lastIndexOf('/'));
         var path = "blogs"+sloc+".json";
+
+        
+
+
+        // Ankit Bhai ye dekho, ye load data ke liye hai.
+        // Isse mai saare blogs including the editBlog, sab ka .main div container
+        // ke andar HTML inject kr deta huin. 
+        // 
+        //Last line (iske neeche waali uncomment kr dio)
+        // var path = "Load_data.php";
 
         blogFactory.getBlogData(path)
           .success(function(jsonData, statusCode){

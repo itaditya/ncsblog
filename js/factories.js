@@ -241,13 +241,23 @@ angular.module('blogApp')
                     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(postContentInJson);
 
                     var dlAnchorElem = document.getElementById('downloadAnchorElem');
-                    dlAnchorElem.setAttribute("href",dataStr);
-                    var FileName = uniqueTag.value + '.json' ;
-                    dlAnchorElem.setAttribute("download", FileName);
+                    // dlAnchorElem.setAttribute("href",dataStr);
+                    // var FileName = uniqueTag.value + '.json' ;
+                    // dlAnchorElem.setAttribute("download", FileName);
                     dlAnchorElem.style.color = "#000";
-                    dlAnchorElem.click();
+                    // dlAnchorElem.click();
+                    ajax("save_data.php",postContentInJson);
+
                 }
             });
+            
+            function ajax(path,sendData) {
+                return $http.get(path,sendData)
+                  .error(function (sendData) {
+                    console.log('There was an error!', sendData);
+                  });
+            }
+
 
             // The Save Blog as Draft Mechanism 
             var saveBlogBtn = document.querySelector('#saveBlogBtn');
