@@ -236,7 +236,9 @@ angular.module('blogApp')
                 else {
                     this.style.opacity = "1";
                     var postContent = DataToObject();
+                    console.log(postContent);
                     var postContentInJson = JSON.stringify(postContent);
+                    postContentInJson='q='+postContentInJson;
                     console.log(postContentInJson);
                     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(postContentInJson);
 
@@ -246,16 +248,32 @@ angular.module('blogApp')
                     // dlAnchorElem.setAttribute("download", FileName);
                     dlAnchorElem.style.color = "#000";
                     // dlAnchorElem.click();
-                    ajax("save_data.php",postContentInJson);
+                    ajax("save_data.php/?",postContentInJson);
 
                 }
             });
             
             function ajax(path,sendData) {
-                return $http.get(path,sendData)
-                  .error(function (sendData) {
-                    console.log('There was an error!', sendData);
-                  });
+               var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                 var output=xhttp.responseText;
+                 if(output=="Please Input Unique Tag")
+                 {
+                                                    //Show error for the unique tag
+                 }
+                 else if(output=="True")
+                 {
+                                                    //Forward him to his blog
+                 }
+                 else
+                 {
+                                                    //Please rewrite the blog again
+                 }
+                }
+              };
+              xhttp.open("GET", path+sendData, true);
+              xhttp.send();
             }
 
 
