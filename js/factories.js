@@ -236,18 +236,46 @@ angular.module('blogApp')
                 else {
                     this.style.opacity = "1";
                     var postContent = DataToObject();
+                    console.log(postContent);
                     var postContentInJson = JSON.stringify(postContent);
+                    postContentInJson='q='+postContentInJson;
                     console.log(postContentInJson);
                     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(postContentInJson);
 
                     var dlAnchorElem = document.getElementById('downloadAnchorElem');
-                    dlAnchorElem.setAttribute("href",dataStr);
-                    var FileName = uniqueTag.value + '.json' ;
-                    dlAnchorElem.setAttribute("download", FileName);
+                    // dlAnchorElem.setAttribute("href",dataStr);
+                    // var FileName = uniqueTag.value + '.json' ;
+                    // dlAnchorElem.setAttribute("download", FileName);
                     dlAnchorElem.style.color = "#000";
-                    dlAnchorElem.click();
+                    // dlAnchorElem.click();
+                    ajax("save_data.php/?",postContentInJson);
+
                 }
             });
+            
+            function ajax(path,sendData) {
+               var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                 var output=xhttp.responseText;
+                 if(output=="Please Input Unique Tag")
+                 {
+                                                    //Show error for the unique tag
+                 }
+                 else if(output=="True")
+                 {
+                                                    //Forward him to his blog
+                 }
+                 else
+                 {
+                                                    //Please rewrite the blog again
+                 }
+                }
+              };
+              xhttp.open("GET", path+sendData, true);
+              xhttp.send();
+            }
+
 
             // The Save Blog as Draft Mechanism 
             var saveBlogBtn = document.querySelector('#saveBlogBtn');
