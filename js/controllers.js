@@ -17,8 +17,10 @@ angular.module('blogControllers', ['blogApp'])
         $scope.breads = blogFactory.getBreads();
 
         var loc = window.location.pathname;
+        console.log(loc);
         var sloc = loc.substring(loc.lastIndexOf('/'),(loc.lastIndexOf('.')-4));
         var path = "blogs"+sloc+".json";
+        console.log(path);
 
         
 
