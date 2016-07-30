@@ -248,7 +248,7 @@ angular.module('blogApp')
                     // dlAnchorElem.setAttribute("download", FileName);
                     dlAnchorElem.style.color = "#000";
                     // dlAnchorElem.click();
-                    ajax("save_data.php/?",postContentInJson);
+                    ajax("../save_data.php/?",postContentInJson);
 
                 }
             });
@@ -409,7 +409,7 @@ angular.module('blogApp')
             angular.element(main).ready(function () {
 
                 var iframe = document.getElementById('frame_textarea_1').contentDocument;
-                var cssLink = "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/EditAreastyle.css\">";
+                var cssLink = "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/EditAreastyle.css\">";
 
                 iframe.head.insertAdjacentHTML("beforeend",cssLink);
             });
