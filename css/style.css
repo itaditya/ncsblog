@@ -28,13 +28,13 @@ li {
 	overflow: auto;
 	width: 100%;
 	background: #fafafa;
-	margin-right: -10px;
+	margin-right: -8px;
 	overflow-x: hidden;
 }
 .page > * {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;	
+	justify-content: space-between;
 }
 .navbar,.footer {
 	width: 100%;
@@ -47,15 +47,14 @@ li {
 	width: 100%;
 	/*background: #000;*/
 	align-items: flex-start;
-
-
+	overflow-x: hidden;
 }
 .sidebar {
 	position: relative;
 	/*To fix the scrolling bug I have to use JS
-	to find .hero-banner rendered height and 
+	to find .hero-banner rendered height and
 	when the scroll position is less than height ,
-	the sidebar will be pos-rel , when the scroll 
+	the sidebar will be pos-rel , when the scroll
 	position is greater than hero height , sidebar will be pos-fixed
 */
 	width: 25%;
@@ -106,7 +105,7 @@ li {
 /*Basic Layout Ends*/
 
 /*Custom Styling starts*/
-@font-face{ 
+@font-face{
 	font-family: 'handwriting';
 	src: url('fonts/fablet/fabfeltscript-bold.eot');
 	src: url('fonts/fablet/fabfeltscript-bold.eot?#iefix') format('embedded-opentype'),
@@ -128,7 +127,7 @@ li {
 	letter-spacing: 1px;
 	word-spacing: 2px;
 	background: transparent;
-	transition:.5s;	
+	transition:.5s;
 }
 .posts-card:before {
 	content: "Read these latest articles";
@@ -140,7 +139,7 @@ li {
 	padding: 15px 60px;
 	padding-left: 0;
 	border-bottom: 2px solid;
-	/*color: rgba(229,126,49,1);*/ 
+	/*color: rgba(229,126,49,1);*/
 	color: #053140;
 	letter-spacing: 0;
 }
@@ -205,7 +204,7 @@ li {
 	text-align: center;
 	display: flex;
 	align-items: center;
-	justify-content: center;	
+	justify-content: center;
 }
 .caption>a {
 	padding: 16px 40px;
@@ -241,8 +240,8 @@ li {
 	outline: 0px;
 }
 .navbar {
-	background: #fff;
-	background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+	/*background: #fff;*/
+	/*background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));*/
 	position: relative;
 	z-index: 2;
 	/*border-bottom: 1px solid rgba(192,201,208,1);*/
@@ -391,7 +390,7 @@ li {
 #user-widget>input {
 	padding: 10px 0;
 	padding-left: 10px;
-	font-size: 20px; 
+	font-size: 20px;
 	margin-bottom: 25px;
 	border: none;
 	/*color: #09B1CF;*/
@@ -427,8 +426,8 @@ div[role="comments"]>p:before {
 }
 .heading:before {
 	content: " ";
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	border-top: 6px solid transparent;
 	border-right: 6px solid transparent;
 	border-bottom: 6px solid transparent;
@@ -465,7 +464,7 @@ div[role="comments"]>p:before {
 }
 .codebox {
 	margin-top: 80px;
-	font-family:"Helvetica Neue",sans-serif !important;	
+	font-family:"Helvetica Neue",sans-serif !important;
 	padding: 20px 30px;
 	/*background: #2B303B;*/
 	font-weight: normal;
@@ -500,7 +499,9 @@ div[role="comments"]>p:before {
 }
 
  /*blog content styling ends*/
-
+.togetherjs-dock-right{
+	background: #053140;
+}
 .footer {
 	margin-top: 100px;
 	height: 100vh;
@@ -641,6 +642,7 @@ div[role="comments"]>p:before {
     transition: .8s;
     text-align: center;
     list-style: none;
+    overflow: hidden;
 }
 .post:hover {
 	background: rgba(0,0,0,0.6);
@@ -667,7 +669,7 @@ div[role="comments"]>p:before {
 	border-radius: 6px;
 	color: #555;
 	/*letter-spacing: 1px;*/
-	text-align: left;	
+	text-align: left;
 	padding: 10px 15px;
 	/*margin-top: 20px;*/
 	white-space: nowrap;  /* used to not break words into differnt lines*/
@@ -713,11 +715,11 @@ div[role="comments"]>p:before {
     /*color: #fff;*/
 
 }
-.codepen::-webkit-scrollbar-thumb {
+.codepen::-webkit-scrollbar-thumb{
     width: 8px;
     background: #666;
     /*color: #fff;*/
-    
+
 }
 .modal::-webkit-scrollbar {
     width: 8px;
@@ -729,7 +731,7 @@ div[role="comments"]>p:before {
     width: 8px;
     background: #666;
     /*color: #fff;*/
-    
+
 }
 .support-image::-webkit-scrollbar,.codebox::-webkit-scrollbar {
     height: 8px;
@@ -737,7 +739,7 @@ div[role="comments"]>p:before {
 }
 .support-image::-webkit-scrollbar-thumb,.codebox::-webkit-scrollbar-thumb {
     height: 8px;
-    background: #666;    
+    background: #666;
 }
 /*Fixes*/
 .page {
@@ -825,7 +827,7 @@ div[role="comments"]>p:before {
 	.main {
 		width: 100%;
 		font-size: 16px;
-		padding-left: 10px;	
+		padding-left: 10px;
 	}
 	.hero-banner {
 		height: 50vh;
@@ -894,7 +896,7 @@ div[role="comments"]>p:before {
 		text-align: center;
 		width: 100%;
 		display: block !important;
-	}	
+	}
 	.brand-details>a>h3 {
 		padding-top: 10px;
 		width: 100%;
@@ -951,14 +953,14 @@ div[role="comments"]>p:before {
 		/*margin-bottom: -25px;*/
 	}
 	.post>h5 {
-		margin: 0px; 
+		margin: 0px;
 	}
 	.tag-box>p {
 		line-height: 30px;
 	}
 	.tags {
-		padding: 5px;	
-		font-size: 12px;	
+		padding: 5px;
+		font-size: 12px;
 	}
 	.subscribe>form>.submit>h3 {
 		font-size: 12px;
