@@ -61,6 +61,7 @@ li {
 	top: 0px;
 	height: 100vh;
 	overflow: auto;
+	right: 0px;
 }
 .main {
 	/*min-height: 2000px;*/
@@ -652,7 +653,6 @@ div[role="comments"]>p:before {
 .post>h5 {
 	font-size: 20px;
 	letter-spacing: 0px;
-
 }
 .tag-box {
 	margin-top: 20px;
