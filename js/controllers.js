@@ -41,7 +41,7 @@ angular.module('blogControllers', ['blogApp'])
               $scope.topics = jsonData.topics ;
               $scope.author = jsonData.author ;
 
-              if (sloc != '/edit') {
+              if (sloc != 'edit') {
                 document.querySelectorAll('.breadcrumb li')[2].innerHTML = jsonData.uniqueTag.toUpperCase();
               }
 
@@ -53,7 +53,7 @@ angular.module('blogControllers', ['blogApp'])
             blogFactory.runCommonJs();
         });
 
-        if(sloc == '/edit'){
+        if(sloc == 'edit'){
           angular.element(document).ready(function () {
               blogFactory.runEditorJs();
           });
