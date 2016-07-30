@@ -3,10 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<title> {{pagename}}</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/lightanim.css">
-	<script src="bower_components/angular/angular.js"></script>	
-	<script src="bower_components/angular-route/angular-route.js"></script>	
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/lightanim.css">
+	<script src="../bower_components/angular/angular.js"></script>	
+	<script src="../bower_components/angular-route/angular-route.js"></script>	
 </head>
 <body>
 	<div class="page animated fadeIn">
@@ -16,7 +16,7 @@
 		<hero-banner info="author" class="hero-banner"></hero-banner>
 		<!-- Hero Poster Ends -->
 		<section class="container" role="blog content">
-			<main class="main z-depth border">
+			<main class="main z-depth border animated fadeIn">
 				<ul class="breadcrumb">
 					<li data-ng-repeat="crumbs in breads"> {{ crumbs | uppercase }} </li>
 				</ul>
@@ -59,24 +59,32 @@
 			<span class="closeModal icon-cross"></span>
 			<h2>Fb Comments Coming Soon ..</h2>
 		</div>
+		<div class="modal" id="quizModal">
+			<span class="closeModal icon-cross"></span>
+			<h2>Quiz Coming Soon ..</h2>
+		</div>
+		<div class="modal" id="adModal">
+			<span class="closeModal icon-cross"></span>
+			<h2>Ads Not Coming Soon ..</h2>
+		</div>
 	</div>
 	<!-- Page ends -->
 
 	<!-- Scripts -->
 
 	<!-- Modules -->
-	<script src="js/app.js"></script>
+	<script src="../js/app.js"></script>
 
 	<!-- Controllers -->
-	<script src="js/controllers.js"></script>
+	<script src="../js/controllers.js"></script>
 
 	<!-- Directives -->
-	<script src="js/directives.js"></script>
+	<script src="../js/directives.js"></script>
 
 
 	<!-- Factories -->
 
-	<script src="js/factories.js"></script>
+	<script src="../js/factories.js"></script>
 
 	<!--
 	<script type="text/javascript" src="js/main.js"></script> 

@@ -9,7 +9,7 @@ blogDir.directive("navBar" , function() {
     scope: { 
       info: '=' 
     },
-   templateUrl:'partials/navbar.html'
+   templateUrl:'../partials/navbar.html'
   }; 
 });
 
@@ -19,7 +19,7 @@ blogDir.directive("sideBar" , function() {
     scope: { 
       info: '=' 
     },
-   templateUrl:'partials/sidebar.html'
+   templateUrl:'../partials/sidebar.html'
   }; 
 });
 
@@ -29,7 +29,7 @@ blogDir.directive("heroBanner" , function() {
     scope: { 
       info: '=' 
     },
-   templateUrl:'partials/herobanner.html'
+   templateUrl:'../partials/herobanner.html'
   }; 
 });
 
@@ -39,7 +39,7 @@ blogDir.directive("blogFooter" , function() {
     scope: { 
       info: '=' 
     },
-   templateUrl:'partials/footer2.html'
+   templateUrl:'../partials/footer2.html'
   }; 
 });
 
