@@ -2,11 +2,13 @@
 <html  ng-cloak ng-app="blogApp" lang="en" ng-controller="blogCtrls">
 <head>
 	<meta charset="utf-8">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
 	<title> {{pagename}}</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/lightanim.css">
-	<script src="bower_components/angular/angular.js"></script>	
-	<script src="bower_components/angular-route/angular-route.js"></script>	
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script type="text/javascript" src="bower_components/editarea_0_8_2/edit_area/edit_area_full.js"></script>
 	<script type="text/javascript">
 		editAreaLoader.init({
@@ -40,7 +42,7 @@
 			font-weight: bold;
 		}
 		.crumbs-connector {
-			margin: 10px 20px;			
+			margin: 10px 20px;
 		}
 		button {
 			height: 40px;
@@ -149,7 +151,7 @@
 				</div>
 				<p>{{post.title}} ({{post.date | date}})</p>
 			</div>
-		</section> 
+		</section>
 	-->
 		<blog-footer info="footer" class="footer bg-dk-purple"></blog-footer>
 		<div class="modal" id="helpModal">
@@ -175,12 +177,12 @@
 	<!-- Factories -->
 
 	<script src="js/factories.js"></script>
-
+	<script src="https://togetherjs.com/togetherjs-min.js"></script>
 	<!--
-	<script type="text/javascript" src="js/main.js"></script> 
+	<script type="text/javascript" src="js/main.js"></script>
 	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
 	<script src="js/routes.js"></script>
-	
+
 	-->
 </body>
 </html>

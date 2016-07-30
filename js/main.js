@@ -64,7 +64,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 	*/
 
 	/* Improvement to be done
-	 * for every btn having data-toggle=modal/tooltip/etc. we have to trigger that 
+	 * for every btn having data-toggle=modal/tooltip/etc. we have to trigger that
 	   through its data-toggle-id i.e. generalise it.
 	*/
 	var comBtn = document.getElementById('comBtn');
@@ -124,7 +124,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 	// ----------------------------------------------------
 
 	// Functions for generating notification based on scrolling .
-	 
+
 	page.addEventListener('scroll' , showNotifications);
 
 	function showNotifications() {
@@ -182,7 +182,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 	function greetuser() {
 		var username = null;
 		if (localStorage.length > 0) {
-			username = JSON.parse(localStorage.details).name;	
+			username = JSON.parse(localStorage.details).name;
 		}
 		if(username !== null) {
 			console.log('Hello ',username);
@@ -199,7 +199,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 	  }
 
 	  // Let's check whether notification permissions have already been granted
-	  else if (Notification.permission === "granted") 
+	  else if (Notification.permission === "granted")
 	  {
 
 	    // If it's okay let's create a notification
@@ -226,7 +226,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 	    });
 	  }
 
-	  // At last, if the user has denied notifications, and you 
+	  // At last, if the user has denied notifications, and you
 	  // want to be respectful there is no need to bother them any more.
 	}
 
@@ -238,7 +238,7 @@ angular.module('blogApp').angular.element(document).ready(function() {
 	* -Use google prety code
 	* -Use codepen embeds --done
 	* -Use local storage to save user name and description like front/back/design.. --done
-	* -Use notification to display a did you know when scrolled just beore footer. --done   
+	* -Use notification to display a did you know when scrolled just beore footer. --done
 	* -Use scroll event to send ajax request for new recent posts .
 	*/
 
@@ -250,9 +250,9 @@ angular.module('blogApp').angular.element(document).ready(function() {
 
 	// Project Bugs -----
 	/*
-	* 1) search icon problem in firefox . 
-	* 2) placeholder color in firefox . 
-	* 3) trouble with height of main and/or container 
+	* 1) search icon problem in firefox .
+	* 2) placeholder color in firefox .
+	* 3) trouble with height of main and/or container
 	     causing overflowing of content rather than increasing height .
 	     -- maybe the problem is with codepen only (yippee!)
 	     --- fixed :) by oveflow scroll on codepen (!strange)
