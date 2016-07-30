@@ -18,9 +18,11 @@ angular.module('blogControllers', ['blogApp'])
 
         var loc = window.location.pathname;
         console.log(loc);
-        var sloc = loc.substring(loc.lastIndexOf('/'),(loc.lastIndexOf('.')-4));
-        var path = "blogs"+sloc+".json";
-        console.log(path);
+        // var sloc = loc.substring(loc.lastIndexOf('/'),(loc.lastIndexOf('.')-4));
+        var sloc = loc.substring(loc.lastIndexOf('/')+1);
+
+        // var path = "blogs"+sloc+".json";
+        console.log(sloc);
 
         
 
@@ -30,11 +32,11 @@ angular.module('blogControllers', ['blogApp'])
         // ke andar HTML inject kr deta huin. 
         // 
         //Last line (iske neeche waali uncomment kr dio)
-        // var path = "Load_data.php";
+        var path = "../load_data.php?q="+sloc;
 
         blogFactory.getBlogData(path)
           .success(function(jsonData, statusCode){
-              console.log('The request was successful!', statusCode);
+              console.log('The request was successful!', statusCode,jsonData);
               $scope.pagename = jsonData.pagename ;
               $scope.topics = jsonData.topics ;
               $scope.author = jsonData.author ;

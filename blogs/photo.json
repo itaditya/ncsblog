@@ -1,7 +1,7 @@
 {
 	"pagename" : "Editing Photos with Photoshop" ,
 	"author" : {
-		        "image":"assets/dp2.jpg","name":"Ankit Jain","title":"Editing Photos with Photoshop"
+		        "image":"../assets/dp2.jpg","name":"Ankit Jain","title":"Editing Photos with Photoshop"
 		       } ,
 	"uniqueTag" : "photo" ,
 	"topics" : [

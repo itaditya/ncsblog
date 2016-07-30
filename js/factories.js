@@ -258,6 +258,7 @@ angular.module('blogApp')
               xhttp.onreadystatechange = function() {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
                  var output=xhttp.responseText;
+                 console.log(output);
                  if(output=="Please Input Unique Tag")
                  {
                                                     //Show error for the unique tag
