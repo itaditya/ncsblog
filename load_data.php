@@ -39,7 +39,8 @@ if(!empty($_GET['q']))
 
 	// $m = new Mongo(); 	// Default localhost
 	$options = array("connectTimeoutMS" => 30000, "replicaSet" => "replicaSetName");
-	$m=new MongoClient($uri,$options);
+	$m=new Mongo($uri);
+	// var_dump($m);
 
 	$db=$m->ncsblog;
 	$collection=$db->blog;

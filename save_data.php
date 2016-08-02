@@ -46,7 +46,7 @@ if(isset($_REQUEST['q']))
 	// $m = new Mongo(); 	// Default localhost
 
 	$options = array("connectTimeoutMS" => 30000, "replicaSet" => "replicaSetName");
-	$m=new MongoClient($uri,$options);
+	$m=new Mongo($uri);
 
 
 	$db=$m->ncsblog; 	//"Database mydb selected";
