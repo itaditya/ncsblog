@@ -37,13 +37,19 @@
 	
 // }
 
+$uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
+
 if(isset($_REQUEST['q']))
 {
 	$data=json_decode($_REQUEST['q']);
 
-	$m = new Mongo(); 	// Default localhost
+	// $m = new Mongo(); 	// Default localhost
 
-	$db=$m->mydb; 	//"Database mydb selected";
+	$options = array("connectTimeoutMS" => 30000, "replicaSet" => "replicaSetName");
+	$m=new Mongo($uri);
+
+
+	$db=$m->ncsblog; 	//"Database mydb selected";
 
 	$collection = $db->createCollection("blog"); 	// Collection blog is created
 
