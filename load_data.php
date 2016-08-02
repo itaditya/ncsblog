@@ -35,6 +35,7 @@ $uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
 if(!empty($_GET['q']))
 {
 	$data=$_GET['q'];
+	var_dump($data);
 	$find=array('uniqueTag' => $data );
 
 	// $m = new Mongo(); 	// Default localhost
