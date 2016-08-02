@@ -22,7 +22,7 @@ angular.module('blogControllers', ['blogApp'])
         var sloc = loc.substring(loc.lastIndexOf('/')+1);
 
         // var path = "blogs"+sloc+".json";
-        var path = "../load_data.php/?q="+sloc;
+        var path = "../load_data.php?q="+sloc;
 
         blogFactory.getBlogData(path)
           .success(function(jsonData, statusCode){
