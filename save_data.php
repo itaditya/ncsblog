@@ -43,7 +43,7 @@ if(isset($_REQUEST['q']))
 
 	$m = new Mongo(); 	// Default localhost
 
-	$db=$m->mydb; 	//"Database mydb selected";
+	$db=$m->ncsblog; 	//"Database mydb selected";
 
 	$collection = $db->createCollection("blog"); 	// Collection blog is created
 

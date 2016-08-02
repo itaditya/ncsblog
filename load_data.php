@@ -37,7 +37,7 @@ if(!empty($_GET['q']))
 
 	$m = new Mongo(); 	// Default localhost
 
-	$db=$m->mydb;
+	$db=$m->ncsblog;
 	$collection=$db->blog;
 	$cursor=$collection->findone($find);
 	echo json_encode($cursor);	
