@@ -30,12 +30,16 @@
 // 	}
 // }
 
+$uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
+
 if(!empty($_GET['q']))
 {
 	$data=$_GET['q'];
 	$find=array('uniqueTag' => $data );
 
-	$m = new Mongo(); 	// Default localhost
+	// $m = new Mongo(); 	// Default localhost
+	$options = array("connectTimeoutMS" => 30000, "replicaSet" => "replicaSetName");
+	$m=new MongoClient($uri,$options);
 
 	$db=$m->ncsblog;
 	$collection=$db->blog;
