@@ -44,9 +44,10 @@ if(isset($_GET['q']))
 	$m=new MongoClient($uri);
 	// var_dump($m);
 
-	$db=$m->ncsblog;
+	$db=$m->selectDB("ncsblog");
 	$collection=$db->blog;
 	$cursor=$collection->findone($find);
+	$m->close();
 	echo json_encode($cursor);	
 	// var_dump(json_encode($cursor));
 }
