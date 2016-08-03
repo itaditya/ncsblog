@@ -31,8 +31,8 @@
 // }
 
 $uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
-echo $uri;
-die($_GET['q']);
+// echo $uri;
+// die($_GET['q']);
 
 if(isset($_GET['q']))
 {
@@ -41,7 +41,7 @@ if(isset($_GET['q']))
 
 	// $m = new Mongo(); 	// Default localhost
 	// $options = array("connectTimeoutMS" => 30000, "replicaSet" => "replicaSetName");
-	$m=new Mongo($uri);
+	$m=new MongoClient($uri);
 	// var_dump($m);
 
 	$db=$m->ncsblog;
