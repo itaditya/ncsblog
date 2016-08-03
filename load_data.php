@@ -32,6 +32,7 @@
 
 $uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
 echo $uri;
+die($_GET['q']);
 
 if(isset($_GET['q']))
 {
