@@ -89,6 +89,10 @@ angular.module('blogApp')
         };
         factory.getPosts = function() {
             // return posts;
+            header('Access-Control-Allow-Origin: http://ncsblog.heroku.com');
+            header('Access-Control-Allow-Credentials: true');
+            header('Access-Control-Allow-Methods: GET, POST');
+            header('Access-Control-Max-Age: 604800');
             return $http.get('partials/posts.json')
               .error(function (data) {
                 console.log('There was an error!', data);
@@ -255,6 +259,10 @@ angular.module('blogApp')
 
             function ajax(path,sendData) {
                 var xhttp = new XMLHttpRequest();
+                header('Access-Control-Allow-Origin: http://ncsblog.heroku.com');
+                header('Access-Control-Allow-Credentials: true');
+                header('Access-Control-Allow-Methods: GET, POST');
+                header('Access-Control-Max-Age: 604800');
                 xhttp.onreadystatechange = function() {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
                     var output=xhttp.responseText;

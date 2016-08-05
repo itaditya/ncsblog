@@ -45,8 +45,8 @@ if(!empty($_GET['q']))
 	$db=$m->ncsblog;
 	$collection=$db->blog;
 	$cursor=$collection->findone($find);
-	// echo json_encode($cursor);	
-	var_dump(json_encode($cursor));
+	echo json_encode($cursor);	
+	// var_dump(json_encode($cursor));
 }
 
 
