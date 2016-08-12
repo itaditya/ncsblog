@@ -23,7 +23,6 @@ angular.module('blogControllers', ['blogApp'])
 
         // var path = "blogs"+sloc+".json";
         var path = "../load_data.php?q="+sloc;
-
         blogFactory.getBlogData(path)
           .success(function(jsonData, statusCode){
               console.log('The request was successful!', statusCode,jsonData);
