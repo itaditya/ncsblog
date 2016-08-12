@@ -12,7 +12,7 @@ angular.module('blogControllers', ['blogApp'])
         $scope.footer = {
             title : 'Nibble Computer Society' ,
             categories :  blogFactory.getCategories()
-        };
+        }
 
         $scope.breads = blogFactory.getBreads();
 
@@ -34,42 +34,42 @@ angular.module('blogControllers', ['blogApp'])
                 document.querySelectorAll('.breadcrumb li')[2].innerHTML = jsonData.uniqueTag.toUpperCase();
               }
 
-              var parent = document.querySelector('.main');
+              var parent = document.getElementsByClassName('main')[0];
               parent.insertAdjacentHTML('beforeend',jsonData.content);
-
-              angular.element(document).ready(function () {
-                  blogFactory.runCommonJs();
-              });
-
-              if(sloc == 'edit'){
-                angular.element(document).ready(function () {
-                    blogFactory.runEditorJs();
-                });
-
-                var options = blogFactory.getOptions();
-
-
-                var primaries = [];
-                var secondaries = [];
-
-                var i = 0, prop = 0;
-                for (prop in options) {
-                  if (options.hasOwnProperty(prop)) {
-                    primaries[i] = prop;
-                    i++;
-                  }
-                }
-
-                $scope.clubs = primaries;
-                $scope.clubInner = options["web"].subOptions;
-
-              }
-              else {
-                angular.element(document).ready(function () {
-                    blogFactory.runJs();
-                });
-              }
           });
+
+        angular.element(document).ready(function () {
+            blogFactory.runCommonJs();
+        });
+
+        if(sloc == 'edit'){
+          angular.element(document).ready(function () {
+              blogFactory.runEditorJs();
+          });
+
+          var options = blogFactory.getOptions();
+
+
+          var primaries = [];
+          var secondaries = [];
+
+          var i = 0, prop = 0;
+          for (prop in options) {
+            if (options.hasOwnProperty(prop)) {
+              primaries[i] = prop;
+              i++;
+            }
+          }
+
+          $scope.clubs = primaries;
+          $scope.clubInner = options["web"].subOptions;
+
+        }
+        else {
+          angular.element(document).ready(function () {
+              blogFactory.runJs();
+          });
+        }
 
         // Preloader Mechanism
         $scope.postsLoaded = false ;
