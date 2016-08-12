@@ -23,7 +23,7 @@ angular.module('blogApp')
           web : {
             subOptions : [
               'html' ,
-              'css' , 
+              'css' ,
               'javascript' ,
               'php',
               'api' ,
@@ -39,7 +39,7 @@ angular.module('blogApp')
           design : {
             subOptions : [
               'html' ,
-              'css' , 
+              'css' ,
               'javascript' ,
               'php',
               'api' ,
@@ -109,12 +109,12 @@ angular.module('blogApp')
 
             // keep page variable and event listener together
             // page.scrollBy('130');
-            
+
 
 
             var sidebar = document.querySelector('.sidebar');
 
-            
+
             var heroheight = document.querySelector('.hero-banner').clientHeight;
 
             function sidebarFix(e) {
@@ -128,7 +128,7 @@ angular.module('blogApp')
             }
 
             // Modal toggling ------------------
-            
+
             var modalBtn = document.querySelectorAll('.modalBtn');
 
             for (var i = modalBtn.length - 1; i >= 0; i--) {
@@ -176,7 +176,7 @@ angular.module('blogApp')
             /* _____________ */
 
 
-            
+
             var menu = document.querySelector(".menu");
             menu.addEventListener("click",function(){
                 document.querySelector(".sidebar").classList.toggle("sm-hide");
@@ -185,7 +185,7 @@ angular.module('blogApp')
         };
 
         factory.runEditorJs = function() {
-            console.log('Lets Make a Blog'); 
+            console.log('Lets Make a Blog');
 
             var topicList = [
             ];
@@ -212,7 +212,7 @@ angular.module('blogApp')
                     } ,
                     uniqueTag :  document.querySelector('#uniqueTag').value,
                     topics : topicList ,
-                    content : editAreaLoader.getValue('textarea_1') 
+                    content : editAreaLoader.getValue('textarea_1')
                 };
                 return postContent ;
             }
@@ -249,7 +249,7 @@ angular.module('blogApp')
                 }
             });
 
-            // The Save Blog as Draft Mechanism 
+            // The Save Blog as Draft Mechanism
             var saveBlogBtn = document.querySelector('#saveBlogBtn');
             saveBlogBtn.addEventListener('click',function(e) {
                 localStorage.setItem('draftBlog',JSON.stringify(DataToObject()));
@@ -259,7 +259,7 @@ angular.module('blogApp')
                 },2000);
             });
 
-            // The Preview Blog as Draft Mechanism 
+            // The Preview Blog as Draft Mechanism
             var previewBlogBtn = document.querySelector('#previewBlogBtn');
             previewBlogBtn.addEventListener('click',function(e) {
 
@@ -268,7 +268,7 @@ angular.module('blogApp')
                 for (var i = 0; i < 2; i++) {
                     editItems[i].style.display = "none";
                 }
-                var previewBlogContent = editAreaLoader.getValue('textarea_1'); 
+                var previewBlogContent = editAreaLoader.getValue('textarea_1');
                 var saveBtnHTML = "<div><br><br><button id=\"saveChangesBtn\">Save Changes</button></div>" ;
 
                 main.insertAdjacentHTML('beforeend',previewBlogContent);
@@ -295,7 +295,7 @@ angular.module('blogApp')
                 });
             });
 
-            // The Load Blog as Draft Mechanism 
+            // The Load Blog as Draft Mechanism
             var loadBlogBtn = document.querySelector('#loadBlogBtn');
             loadBlogBtn.addEventListener('click',function(e) {
                 var blogObj = JSON.parse(localStorage.getItem('draftBlog'));
@@ -306,7 +306,7 @@ angular.module('blogApp')
                 },2000);
             });
 
-            // The initiate Blog as Draft Mechanism 
+            // The initiate Blog as Draft Mechanism
             var initiateBlogBtn = document.querySelector('#initiateBlogBtn');
             initiateBlogBtn.addEventListener('click',function() {
 
@@ -337,7 +337,7 @@ angular.module('blogApp')
                 {
                     open : "<a href=\" \" class=\"hyperlink txt-green\" >" ,
                     close : "</a>"
-                } , 
+                } ,
                 {
                     open : "<strong> " ,
                     close : " </strong>"
@@ -361,7 +361,7 @@ angular.module('blogApp')
                 {
                     open : "<div class=\"codepen\">" ,
                     close : "</div>"
-                } 
+                }
 
             ];
 
@@ -478,7 +478,7 @@ angular.module('blogApp')
             // ----------------------------------------------------
 
             // Functions for generating notification based on scrolling .
-             
+
             page.addEventListener('scroll' , showNotifications);
 
             function showNotifications() {
@@ -526,7 +526,7 @@ angular.module('blogApp')
             function greetuser() {
                 var username = null;
                 if (localStorage.length > 0) {
-                    username = JSON.parse(localStorage.details).name;   
+                    username = JSON.parse(localStorage.details).name;
                 }
                 if(typeof username != 'object') {
                     console.log('Hello ',username);
@@ -539,19 +539,19 @@ angular.module('blogApp')
             greetuser();
 
             // Jump to section Feature
-            
+
             var sidebarLi = document.querySelectorAll(".index-list li");
             var blogLi = document.querySelectorAll(".blog-paragraphs li");
 
             function jumpToSection() {
-                
+
                 // var blogLi = document.querySelectorAll(".blog-paragraphs li");
                 console.log(blogLi);
                 var id = parseInt(this.dataset.target);
                 blogLi[id].setAttribute("tabindex",100);
                 blogLi[id].focus();
             }
-            
+
             if (sidebarLi.length == blogLi.length) {
 
                 for (var i =  0; i < sidebarLi.length; i++) {
@@ -571,7 +571,7 @@ angular.module('blogApp')
               }
 
               // Let's check whether notification permissions have already been granted
-              else if (Notification.permission === "granted") 
+              else if (Notification.permission === "granted")
               {
 
                 // If it's okay let's create a notification
@@ -598,7 +598,7 @@ angular.module('blogApp')
                 });
               }
 
-              // At last, if the user has denied notifications, and you 
+              // At last, if the user has denied notifications, and you
               // want to be respectful there is no need to bother them any more.
             }
 
@@ -623,8 +623,8 @@ angular.module('blogApp')
 
 // Project Bugs -----
 /*
-    * placeholder color in firefox . 
-    * trouble with height of main and/or container 
+    * placeholder color in firefox .
+    * trouble with height of main and/or container
       causing overflowing of content rather than increasing height .
      -- maybe the problem is with codepen only (yippee!)
      --- fixed :) by oveflow scroll on codepen (!strange)
