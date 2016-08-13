@@ -4,7 +4,7 @@
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Allow-Methods: GET, POST');
     header('Access-Control-Max-Age: 604800');
-    header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With')
+    header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With');
 // require_once 'database.php';
 // $connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 // if(!empty($_GET['q']))
