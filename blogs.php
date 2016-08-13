@@ -5,8 +5,8 @@
 	<title> {{pagename}}</title>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../css/lightanim.css">
-	<script src="../bower_components/angular/angular.js"></script>	
-	<script src="../bower_components/angular-route/angular-route.js"></script>	
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/scroll/scroll.min.js"></script>
 </head>
 <body>
 	<div class="page animated fadeIn">
@@ -87,10 +87,10 @@
 	<script src="../js/factories.js"></script>
 
 	<!--
-	<script type="text/javascript" src="js/main.js"></script> 
+	<script type="text/javascript" src="js/main.js"></script>
 	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
 	<script src="js/routes.js"></script>
-	
+
 	-->
 </body>
 </html>
