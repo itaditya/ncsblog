@@ -13,11 +13,11 @@ blog helping fellow geeks at : NCS Blog[http://adiblog.esy.es/]
 
 * then clone this repo into your local workstation using
 
-` git clone www.github.com/< your git id >/ncsblog.git
+` git clone www.github.com/< your git id >/ncsblog.git `
 
 * jump in the directory containing the cloned repo with
 
-` cd < path >
+` cd < path > `
 
 * So now, you have the project ready to begin with .
 
