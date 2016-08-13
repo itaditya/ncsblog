@@ -105,18 +105,30 @@ angular.module('blogApp')
               });
         };
         factory.runCommonJs = function() {
-            var page = document.querySelector('.page');
-            page.addEventListener('scroll',sidebarFix);
+
+            function $(elem){
+              return document.querySelector(elem);
+            }
+            function $$(elem){
+              return document.querySelectorAll(elem);
+            }
+            function eve(eve_target,eve_action,eve_call){
+                var eve_target = $(eve_target);
+                if (eve_target) {
+                    eve_target.addEventListener(eve_action,eve_call);
+                }
+            }
+
+
+            eve('.page','scroll',sidebarFix);
 
             // keep page variable and event listener together
             // page.scrollBy('130');
 
 
 
-            var sidebar = document.querySelector('.sidebar');
-
-
-            var heroheight = document.querySelector('.hero-banner').clientHeight;
+            var sidebar = $('.sidebar');
+            var heroheight = $('.hero-banner').clientHeight;
 
             function sidebarFix(e) {
                 var scrolled = page.scrollTop;
@@ -130,7 +142,7 @@ angular.module('blogApp')
 
             // Modal toggling ------------------
 
-            var modalBtn = document.querySelectorAll('.modalBtn');
+            var modalBtn = $$('.modalBtn');
 
             for (var i = modalBtn.length - 1; i >= 0; i--) {
                 modalBtn[i].addEventListener('click' , toggleCommentModal);
@@ -142,13 +154,14 @@ angular.module('blogApp')
                 closeBtn.addEventListener('click' , function() {
                     that.click();
                 });
-                document.addEventListener('keydown' , function(event) {
-                    var evt = event || window.event;
-                    if(evt.keyCode == 27){
-                        that.click();
-                    }
-                    evt.preventDefault();
-                });
+                document.addEventListener('keydown', escKeyQuit);
+            }
+            function escKeyQuit(event) {
+                var evt = event || window.event;
+                if(evt.keyCode == 27){
+                    that.click();
+                }
+                evt.preventDefault();
             }
 
             function toggler(elem) {
