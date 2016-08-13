@@ -1,6 +1,7 @@
 <?php
 
- 	header('Access-Control-Allow-Origin: http://ncsblog.heroku.com');
+ 	header('content-type: application/json; charset=utf-8');
+    header("access-control-allow-origin: *");
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Allow-Methods: GET, POST');
     header('Access-Control-Max-Age: 604800');
