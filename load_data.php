@@ -7,7 +7,7 @@
 // require_once 'database.php';
 // $connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 // if(!empty($_GET['q']))
-// {	
+// {
 // 	// echo $_GET['q'];
 // 	$uniqueTag=$_GET['q'];
 // 	// var_dump($uniqueTag);
@@ -50,7 +50,7 @@ if(!empty($_GET['q']))
 	$db=$m->ncsblog;
 	$collection=$db->blog;
 	$cursor=$collection->findone($find);
-	echo json_encode($cursor);	
+	echo json_encode($cursor);
 	// var_dump(json_encode($cursor));
 }
 

@@ -89,8 +89,8 @@ angular.module('blogApp')
         };
         factory.getPosts = function() {
             // return posts;
-           
-            return $http.get('partials/posts.json')
+
+            return $http.get('../partials/posts.json')
               .error(function (data) {
                 console.log('There was an error!', data);
               });
@@ -256,7 +256,7 @@ angular.module('blogApp')
 
             function ajax(path,sendData) {
                 var xhttp = new XMLHttpRequest();
-               
+
                 xhttp.onreadystatechange = function() {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
                     var output=xhttp.responseText;
@@ -403,18 +403,18 @@ angular.module('blogApp')
                 });
             }
             // console.log(frames['frame_textarea_1'].document.body);
-            var main = document.querySelector('.main');
+            var main = document.querySelector('#textarea_1');
             angular.element(main).ready(function () {
-
-                var iframe = document.getElementById('frame_textarea_1').contentDocument;
-                var cssLink = "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/EditAreastyle.css\">";
-
-                iframe.head.insertAdjacentHTML("beforeend",cssLink);
             });
 
             // Keyboard shortcuts inside iframe.
            setTimeout(function () {
 
+
+                var iframe = document.getElementById('frame_textarea_1').contentDocument;
+                var cssLink = "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/EditAreastyle.css\">";
+
+                iframe.head.insertAdjacentHTML("beforeend",cssLink);
                 var iframe = document.getElementById('frame_textarea_1').contentDocument;
 
                 var textarea = iframe.body.querySelector("#textarea");
@@ -460,7 +460,7 @@ angular.module('blogApp')
                     }
                     // 48-57  : 0-9
                 });
-            },1000);
+            },2100);
         };
         factory.runJs = function() {
 
