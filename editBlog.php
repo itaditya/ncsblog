@@ -5,23 +5,9 @@
 	<title> {{pagename}}</title>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../css/lightanim.css">
-	<script src="../bower_components/angular/angular.js"></script>	
-	<script src="../bower_components/angular-route/angular-route.js"></script>	
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/angular-route/angular-route.js"></script>
 	<script type="text/javascript" src="../bower_components/editarea_0_8_2/edit_area/edit_area_full.js"></script>
-	<script type="text/javascript">
-		editAreaLoader.init({
-			id : "textarea_1"		// textarea id
-			,font_size : 14
-			,word_wrap : true
-			,allow_toggle : false
-			,allow_resize : "yes"
-			// ,toolbar: "search, go_to_line, undo, redo, |, select_font, |, syntax_selection, |, fullscreen,|, change_smooth_selection, |, help"
-			// ,plugins : "charmap"
-			,toolbar: "search, go_to_line, undo, redo, |, select_font, |, fullscreen,|, change_smooth_selection, |, help"
-			,min_width : 800
-			,syntax: "html"			// syntax to be uses for highgliting
-		});
-	</script>
 	<style>
 
 		select , #uniqueTag {
@@ -40,7 +26,7 @@
 			font-weight: bold;
 		}
 		.crumbs-connector {
-			margin: 10px 20px;			
+			margin: 10px 20px;
 		}
 		button {
 			height: 40px;
@@ -149,7 +135,7 @@
 				</div>
 				<p>{{post.title}} ({{post.date | date}})</p>
 			</div>
-		</section> 
+		</section>
 	-->
 		<blog-footer info="footer" class="footer bg-dk-purple"></blog-footer>
 		<div class="modal" id="helpModal">
@@ -177,10 +163,26 @@
 	<script src="../js/factories.js"></script>
 
 	<!--
-	<script type="text/javascript" src="js/main.js"></script> 
+	<script type="text/javascript" src="js/main.js"></script>
 	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&amp;skin=sunburst"></script>
 	<script src="js/routes.js"></script>
-	
+
 	-->
+	<script type="text/javascript">
+		setTimeout(function () {
+			editAreaLoader.init({
+				id : "textarea_1"		// textarea id
+				,font_size : 14
+				,word_wrap : true
+				,allow_toggle : false
+				,allow_resize : "yes"
+				// ,toolbar: "search, go_to_line, undo, redo, |, select_font, |, syntax_selection, |, fullscreen,|, change_smooth_selection, |, help"
+				// ,plugins : "charmap"
+				,toolbar: "search, go_to_line, undo, redo, |, select_font, |, fullscreen,|, change_smooth_selection, |, help"
+				,min_width : 800
+				,syntax: "html"			// syntax to be uses for highgliting
+			});
+		},2000);
+	</script>
 </body>
 </html>
