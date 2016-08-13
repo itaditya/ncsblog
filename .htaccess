@@ -1,5 +1,5 @@
 RewriteRule ^/api(.*)\.json$ /api$1.json [CORS=True]
 Header set Access-Control-Allow-Origin: "*" env=CORS
 Header set Access-Control-Allow-Methods: "GET,POST" env=CORS
-Header add Access-Control-Allow-Headers: "text/json"
-Header set Access-Control-Allow-Credentials "true" env=CORS
+Header add Access-Control-Allow-Headers: "Content-Type"
+Header set Access-Control-Allow-Credentials "false" env=CORS
