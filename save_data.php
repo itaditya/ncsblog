@@ -1,8 +1,8 @@
 <?php
- 	header('Access-Control-Allow-Origin: http://ncsblog.heroku.com');
-    header('Access-Control-Allow-Credentials: true');
-	header('Access-Control-Allow-Methods: GET, POST');
-	header('Access-Control-Max-Age: 604800');
+ // 	header('Access-Control-Allow-Origin: http://ncsblog.heroku.com');
+ //    header('Access-Control-Allow-Credentials: true');
+	// header('Access-Control-Allow-Methods: GET, POST');
+	// header('Access-Control-Max-Age: 604800');
 // require 'database.php';
 // $connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 // // var_dump($_REQUEST['q']);
@@ -38,7 +38,7 @@
 // 			}
 // 		}
 // 	}
-	
+
 // }
 
 $uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
