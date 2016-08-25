@@ -56,6 +56,7 @@ if(!empty($_GET['q']))
 	$cursor=$collection->findone($find);
 	echo json_encode($cursor);
 	// var_dump(json_encode($cursor));
+    $m->close();
 }
 
 
