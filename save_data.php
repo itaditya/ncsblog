@@ -43,7 +43,7 @@
 
 $uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
 
-if(isset($_REQUEST['q']))
+if(!empty($_REQUEST['q']))
 {
 	$data=json_decode($_REQUEST['q']);
 
@@ -59,6 +59,7 @@ if(isset($_REQUEST['q']))
 
 	$collection->insert($data);
 	echo 'Done';
+	$m->close();
 }
 
 
