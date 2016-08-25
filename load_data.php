@@ -37,7 +37,8 @@
 // 	}
 // }
 
-$uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
+// $uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
+$uri = getenv('MONGOLAB_URI');
 
 if(!empty($_GET['q']))
 {
