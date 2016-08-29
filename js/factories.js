@@ -235,6 +235,20 @@ angular.module('blogApp')
         factory.runEditorJs = function() {
             console.log('Lets Make a Blog');
 
+
+            function $(elem){
+              return document.querySelector(elem);
+            }
+            function $$(elem){
+              return document.querySelectorAll(elem);
+            }
+            function eve(eve_target,eve_action,eve_call){
+                var eve_target = $(eve_target);
+                if (eve_target) {
+                    eve_target.addEventListener(eve_action,eve_call);
+                }
+            }
+
             var topicList = [
             ];
             var topicListSrc = $$('.index-list li');
@@ -501,6 +515,20 @@ angular.module('blogApp')
             },2100);
         };
         factory.runJs = function() {
+
+            
+            function $(elem){
+              return document.querySelector(elem);
+            }
+            function $$(elem){
+              return document.querySelectorAll(elem);
+            }
+            function eve(eve_target,eve_action,eve_call){
+                var eve_target = $(eve_target);
+                if (eve_target) {
+                    eve_target.addEventListener(eve_action,eve_call);
+                }
+            }
 
             var page = $(".page");
 
