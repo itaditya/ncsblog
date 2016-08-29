@@ -39,8 +39,8 @@ angular.module('blogControllers', ['blogApp'])
 
               angular.element(document).ready(function () {
                   blogFactory.runCommonJs();
-              });
 
+                  
               if(sloc == 'edit'){
                 angular.element(document).ready(function () {
                     blogFactory.runEditorJs();
@@ -69,6 +69,7 @@ angular.module('blogControllers', ['blogApp'])
                     blogFactory.runJs();
                 });
               }
+              });
           });
 
         // Preloader Mechanism

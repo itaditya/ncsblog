@@ -502,7 +502,7 @@ angular.module('blogApp')
         };
         factory.runJs = function() {
 
-            var page = document.querySelector(".page");
+            var page = $(".page");
 
             var btnList = $$('.btn');
             for (var i = btnList.length - 1; i >= 0; i--) {
