@@ -40,11 +40,11 @@ angular.module('blogControllers', ['blogApp'])
               angular.element(document).ready(function () {
                   blogFactory.runCommonJs();
 
-                  
+
               if(sloc == 'edit'){
-                angular.element(document).ready(function () {
+                setTimeout(function () {
                     blogFactory.runEditorJs();
-                });
+                },1000);
 
                 var options = blogFactory.getOptions();
 
@@ -65,9 +65,9 @@ angular.module('blogControllers', ['blogApp'])
 
               }
               else {
-                angular.element(document).ready(function () {
+                setTimeout(function () {
                     blogFactory.runJs();
-                });
+                },1000);
               }
               });
           });
