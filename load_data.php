@@ -1,9 +1,11 @@
 <?php
 
- 	header('Access-Control-Allow-Origin: http://ncsblog.heroku.com');
-    header('Access-Control-Allow-Credentials: true');
-    header('Access-Control-Allow-Methods: GET, POST');
-    header('Access-Control-Max-Age: 604800');
+ 	// header('content-type: application/json; charset=utf-8');
+  //   header("access-control-allow-origin: *");
+  //   header('Access-Control-Allow-Credentials: true');
+  //   header('Access-Control-Allow-Methods: GET, POST');
+  //   header('Access-Control-Max-Age: 604800');
+  //   header('Access-Control-Allow-Headers : Content-Type, Accept, Authorization, X-Requested-With');
 // require_once 'database.php';
 // $connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 // if(!empty($_GET['q']))
@@ -36,6 +38,8 @@
 // }
 
 $uri="mongodb://ankitjain28:9463@ds021994.mlab.com:21994/ncsblog";
+if(!empty(getenv('MONGOLAB_URI')))
+    $uri = getenv('MONGOLAB_URI');
 
 if(!empty($_GET['q']))
 {
@@ -52,6 +56,7 @@ if(!empty($_GET['q']))
 	$cursor=$collection->findone($find);
 	echo json_encode($cursor);
 	// var_dump(json_encode($cursor));
+    $m->close();
 }
 
 
