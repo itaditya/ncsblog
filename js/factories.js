@@ -191,8 +191,7 @@ angular.module('blogApp')
 
 
 
-            var menu = document.querySelector(".menu");
-            menu.addEventListener("click",function(){
+            eve(".menu","click",function(){
                 document.querySelector(".sidebar").classList.toggle("sm-hide");
             });
 
@@ -238,13 +237,13 @@ angular.module('blogApp')
 
             var topicList = [
             ];
-            var topicListSrc = document.querySelectorAll('.index-list li');
+            var topicListSrc = $$('.index-list li');
 
 
             for (var i = 0; i < topicListSrc.length; i++) {
                 topicListSrc[i].setAttribute('contenteditable','true');
             }
-            document.querySelector('.topic h2').setAttribute('contenteditable','true');
+            $$('.topic h2').setAttribute('contenteditable','true');
 
 
             function DataToObject() {
@@ -253,13 +252,13 @@ angular.module('blogApp')
                 }
 
                 var postContent = {
-                    pagename : document.querySelector('.topic h2').innerHTML,
+                    pagename : $$('.topic h2').innerHTML,
                     author : {
-                        image : document.querySelector('.topic img').getAttribute('src') ,
-                        name : document.querySelector('.topic p strong').innerHTML ,
-                        title : document.querySelector('.topic h2').innerHTML
+                        image : $$('.topic img').getAttribute('src') ,
+                        name : $$('.topic p strong').innerHTML ,
+                        title : $$('.topic h2').innerHTML
                     } ,
-                    uniqueTag :  document.querySelector('#uniqueTag').value,
+                    uniqueTag :  $$('#uniqueTag').value,
                     topics : topicList ,
                     content : editAreaLoader.getValue('textarea_1')
                 };
@@ -267,8 +266,7 @@ angular.module('blogApp')
             }
 
             //The Download blog In Json Mechanism
-            var postBlogBtn = document.querySelector('#postBlogBtn');
-            postBlogBtn.addEventListener('click',function(e) {
+            eve('#postBlogBtn','click',function(e) {
                 var uniqueTag = document.querySelector('#uniqueTag');
                 if(uniqueTag.classList.contains("ng-invalid")){
                     this.style.opacity = "0.7";
@@ -285,19 +283,19 @@ angular.module('blogApp')
                 else {
                     this.style.opacity = "1";
                     var postContent = DataToObject();
-                    console.log(postContent);
                     var postContentInJson = JSON.stringify(postContent);
                     postContentInJson='q='+postContentInJson;
-                    console.log(postContentInJson);
                     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(postContentInJson);
 
-                    var dlAnchorElem = document.getElementById('downloadAnchorElem');
-                    // dlAnchorElem.setAttribute("href",dataStr);
+                    var blogPath = "https://devblogs.herokuapp.com/blogs.php/" + postContent.uniqueTag;
+
+                    var dlAnchorElem = $('#downloadAnchorElem');
                     // var FileName = uniqueTag.value + '.json' ;
                     // dlAnchorElem.setAttribute("download", FileName);
                     dlAnchorElem.style.color = "#000";
                     // dlAnchorElem.click();
                     ajax("../save_data.php/?",postContentInJson);
+                    dlAnchorElem.setAttribute("href",blogPath);
                     navigator.vibrate(2000);
                 }
             });
@@ -325,8 +323,7 @@ angular.module('blogApp')
 
 
             // The Save Blog as Draft Mechanism
-            var saveBlogBtn = document.querySelector('#saveBlogBtn');
-            saveBlogBtn.addEventListener('click',function(e) {
+            eve('#saveBlogBtn','click',function(e) {
                 localStorage.setItem('draftBlog',JSON.stringify(DataToObject()));
                 saveBlogBtn.innerHTML = "Saved as Draft !";
                 setTimeout(function(){
@@ -335,8 +332,7 @@ angular.module('blogApp')
             });
 
             // The Preview Blog as Draft Mechanism
-            var previewBlogBtn = document.querySelector('#previewBlogBtn');
-            previewBlogBtn.addEventListener('click',function(e) {
+            eve('#previewBlogBtn','click',function(e) {
 
                 var main = document.querySelector('.main');
                 var editItems = main.children;
@@ -354,8 +350,7 @@ angular.module('blogApp')
                 document.querySelector('.input-field').blur();
 
 
-                var saveChangesBtn = document.querySelector('#saveChangesBtn');
-                saveChangesBtn.addEventListener('click' , function() {
+                eve('#saveChangesBtn','click' , function() {
                     main.children[2].setAttribute('contenteditable','false');
                     editAreaLoader.setValue('textarea_1',main.children[2].outerHTML);
 
@@ -371,8 +366,7 @@ angular.module('blogApp')
             });
 
             // The Load Blog as Draft Mechanism
-            var loadBlogBtn = document.querySelector('#loadBlogBtn');
-            loadBlogBtn.addEventListener('click',function(e) {
+            eve('#loadBlogBtn','click',function(e) {
                 var blogObj = JSON.parse(localStorage.getItem('draftBlog'));
                 editAreaLoader.setValue('textarea_1', blogObj.content);
                 loadBlogBtn.innerHTML = " Draft Loaded !";
@@ -382,8 +376,7 @@ angular.module('blogApp')
             });
 
             // The initiate Blog as Draft Mechanism
-            var initiateBlogBtn = document.querySelector('#initiateBlogBtn');
-            initiateBlogBtn.addEventListener('click',function() {
+            eve('#initiateBlogBtn','click',function() {
 
                 var topicListSrc = document.querySelectorAll('.index-list li');
 
@@ -440,7 +433,7 @@ angular.module('blogApp')
 
             ];
 
-            var insertBtnList = document.querySelectorAll('.insert-list li button');
+            var insertBtnList = $$('.insert-list li button');
             for (var i = 0; i < insertBtnList.length; i++) {
                 insertBtnList[i].dataset.insert = i;
             }
@@ -451,10 +444,7 @@ angular.module('blogApp')
                 });
             }
             // console.log(frames['frame_textarea_1'].document.body);
-            var main = document.querySelector('#textarea_1');
-            angular.element(main).ready(function () {
-            });
-
+            var main = $('#textarea_1');
             // Keyboard shortcuts inside iframe.
            setTimeout(function () {
 
@@ -476,18 +466,18 @@ angular.module('blogApp')
                         }
                         else if(evt.keyCode == 83) {
                             // "Ctrl + S"
-                            document.querySelector("#saveBlogBtn").click();
+                            $("#saveBlogBtn").click();
                             evt.preventDefault();
                         }
 
                         else if(evt.keyCode == 76) {
                             // "Ctrl + L"
-                            document.querySelector("#loadBlogBtn").click();
+                            $("#loadBlogBtn").click();
                             evt.preventDefault();
                         }
                         else if(evt.keyCode == 80) {
                             // "Ctrl + L"
-                            document.querySelector("#previewBlogBtn").click();
+                            $("#previewBlogBtn").click();
                             evt.preventDefault();
                         }
                         if(evt.keyCode == 191) {
@@ -514,7 +504,7 @@ angular.module('blogApp')
 
             var page = document.querySelector(".page");
 
-            var btnList = document.querySelectorAll('.btn');
+            var btnList = $$('.btn');
             for (var i = btnList.length - 1; i >= 0; i--) {
                 btnList[i].addEventListener("click",function() {
                     this.classList.add("btn-click");
@@ -615,8 +605,8 @@ angular.module('blogApp')
 
             // Jump to section Feature
 
-            var sidebarLi = document.querySelectorAll(".index-list li");
-            var blogLi = document.querySelectorAll(".blog-paragraphs li");
+            var sidebarLi = $$(".index-list li");
+            var blogLi = $$(".blog-paragraphs li");
 
             function jumpToSection() {
 
@@ -689,7 +679,6 @@ angular.module('blogApp')
             // Feature to copy code to clipboard just by
             // clicking on code (maybe I will add a button to do this)
 
-            var contbig = document.getElementsByClassName('main')[0];
         };
 
         return factory;
